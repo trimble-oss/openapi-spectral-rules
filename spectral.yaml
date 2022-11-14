@@ -1,0 +1,46 @@
+extends: spectral:oas
+rules:
+  no-$ref-siblings: off
+
+  # Reject Pascal Case within tags
+  tagpascalecase:
+    severity: warn
+    recommended: true
+    message: Tag names cannot use Pascal Case. Please rename {{value}}.
+    given:
+      - $.tags[*].name
+      - $.paths[*][*].tags[*]
+    then:
+      function: pattern
+      functionOptions:
+        #pascal case
+        notMatch: "/[A-Z][a-z]+[A-Z][a-z]+$/g"
+
+  # Reject Camel Case within tags
+  tagcamelcase:
+    description: Detects a tag with camelCase (personalItem) text within it
+    severity: warn
+    recommended: true
+    message: Tag names cannot use Camel Case. Please rename {{value}}.
+    given:
+      - $.tags[*].name
+      - $.paths[*][*].tags[*]
+    then:
+      function: pattern
+      functionOptions:
+        #pascal case
+        notMatch: "/^[a-z]+[A-Z][a-z]+$/g"
+
+  # Reject version within tags
+  tagnoversions:
+    severity: warn
+    recommended: true
+    message: Tag names cannot have version information {{value}}. Consider versioning your API.
+    given:
+      - $.tags[*].name
+      - $.paths[*][*].tags[*]
+    then:
+      function: pattern
+      functionOptions:
+        #pascal case
+        notMatch: "/(V|v)\\s?[0-9]+/g"
