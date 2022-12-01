@@ -41,3 +41,26 @@ spectral lint ./openapi.yaml \
     --format html > ./results.html
 
 ```
+
+Lint the test spec locally
+
+```bash
+spectral lint ./tests/TrimbleSpectralTestSpec.json \
+    --ruleset ./spectral.yaml \
+    --format html > ./results.html
+```
+
+## Trimble Rules
+
+### Test TDP minimum version
+
+**tdp-minimum-spec-version**
+
+Warn if spec version is not 3.0 or higher
+
+```bash
+spectral lint ./examples/v2/petstore.yaml --ruleset ./spectral.yaml
+spectral lint ./examples/v3.0/petstore.yaml --ruleset ./spectral.yaml
+```
+
+Petstore examples are from [OpenAPI Initiative](https://github.com/OAI/OpenAPI-Specification/tree/main/examples)

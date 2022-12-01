@@ -1,0 +1,2085 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family:Arial, "Helvetica Neue", Helvetica, sans-serif;
+            font-size:16px;
+            font-weight:normal;
+            margin:0;
+            padding:0;
+            color:#333
+        }
+        #overview {
+            padding:20px 30px
+        }
+        td, th {
+            padding:5px 10px
+        }
+        h1 {
+            margin:0
+        }
+        table {
+            margin:30px;
+            width:calc(100% - 60px);
+            max-width:1000px;
+            border-radius:5px;
+            border:1px solid #ddd;
+            border-spacing:0px;
+        }
+        th {
+            font-weight:400;
+            font-size:medium;
+            text-align:left;
+            cursor:pointer
+        }
+        td.severity, th span {
+            font-weight:700
+        }
+        th span {
+            float:right;
+            margin-left:20px
+        }
+        th span:after {
+            content:"";
+            clear:both;
+            display:block
+        }
+        tr:last-child td {
+            border-bottom:none
+        }
+        tr td:first-child, tr td:last-child {
+            color:#9da0a4
+        }
+        #overview.bg-success, tr.bg-success th {
+            color:#468847;
+            background:#dff0d8;
+            border-bottom:1px solid #d6e9c6
+        }
+        #overview.bg-error, tr.bg-error th {
+            color:#b94a48;
+            background:#f2dede;
+            border-bottom:1px solid #eed3d7
+        }
+        #overview.bg-warning, tr.bg-warning th {
+            color:#f0ad4e;
+            background:#fcf8e3;
+            border-bottom:1px solid #fbeed5
+        }
+        #overview.bg-information, tr.bg-information th {
+            color:#4e95f0;
+            background:#deecfb;
+            border-bottom:1px solid #d3e3ee
+        }
+        td {
+            border-bottom:1px solid #ddd
+        }
+        td.clr-error {
+            color:#b94a48
+        }
+        td.clr-warning {
+            color:#f0ad4e
+        }
+        td.clr-information {
+            color:#4e95f0
+        }
+        td.clr-hint {
+            color:#5a5a5a
+        }
+    </style>
+    <title>Spectral Report</title>
+</head>
+<body>
+<div id="overview" class="bg-error">
+    <h1>Spectral Report</h1>
+    <div>
+        <span>327 problems (5 errors, 322 warnings, 0 infos, 0 hints)</span> - Generated on Fri Nov 18 2022 07:32:19 GMT+0000 (Western European Standard Time)
+    </div>
+</div>
+<table>
+    <tbody>
+    <tr class="bg-error" data-group="f-0">
+    <th colspan="4">
+        [+] /Users/jbendix/Projects/Trimble/openapi-spectral-rules/tests/TrimbleSpectralTestSpec.json
+        <span>327 problems (5 errors, 322 warnings, 0 infos, 0 hints)</span>
+    </th>
+</tr>
+<tr style="display:none" class="f-0">
+    <td>5:16</td>
+    <td class="severity clr-error">error</td>
+    <td>Property &quot;summary&quot; is not expected to be here.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>14:16</td>
+    <td class="severity clr-error">error</td>
+    <td>&quot;email&quot; property must match format &quot;email&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>95:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Camel Case. Please rename camelCase.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>100:15</td>
+    <td class="severity clr-error">error</td>
+    <td>&quot;tags&quot; object contains duplicate tag name &quot;camelCase&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>100:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Camel Case. Please rename camelCase.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>120:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename FieldExtents.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>125:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>160:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentActivity.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>175:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename AdaptToken.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>202:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>202:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>203:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>203:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Camel Case. Please rename adaptToken.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>213:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>213:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>214:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>277:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>339:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>409:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>464:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>518:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>555:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>592:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>593:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>654:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>655:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>724:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>725:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>779:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>780:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>833:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>834:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>879:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>880:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>916:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>917:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>979:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>980:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1032:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1033:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1087:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1088:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1136:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1137:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1168:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1169:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1169:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot have version information CropSeasonsV1.0. Consider versioning your API.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1223:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1224:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1224:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot have version information CropSeasonsV1. Consider versioning your API.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1290:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1291:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1291:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot have version information CropSeasons v2. Consider versioning your API.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1345:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1346:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1346:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot have version information CropV2Seasons. Consider versioning your API.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1399:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1399:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1400:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1478:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1478:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1479:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1526:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1526:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1527:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1527:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZoneExtents.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1572:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1572:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1573:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1573:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZoneExtents.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1620:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1620:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1621:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1621:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename cropZoneExtents.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1651:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1651:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1652:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1652:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZones.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1697:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1697:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1698:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1698:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZones.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1755:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1755:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1756:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1756:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZones.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1810:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1810:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1811:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1811:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZones.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1858:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1858:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1859:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1859:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename CropZones.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1909:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1909:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1957:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>1957:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2005:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2005:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2006:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentActivity.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2084:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2084:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2085:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentActivity.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2132:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2133:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2133:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentGroup.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2187:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2188:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2188:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentGroup.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2237:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2238:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2238:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentGroup.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2292:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2293:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2293:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentGroup.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2341:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2342:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2342:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentGroup.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2373:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2374:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2374:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename EquipmentManufacturers.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2411:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2454:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2503:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2540:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2590:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2628:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2659:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2660:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename FieldExtents.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2714:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2715:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename FieldExtents.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2765:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2827:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2897:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>2952:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3006:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3043:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3080:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3081:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3145:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3146:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3194:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3195:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3231:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3232:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3281:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3282:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3312:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3313:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename GuidanceLines.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3343:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3344:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3398:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3399:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3448:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3449:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3503:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3504:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3554:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3555:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3588:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3589:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3622:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3687:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3736:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3773:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3823:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3854:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3885:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3885:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3886:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3948:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3948:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3949:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3996:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3996:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>3997:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4053:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4053:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4054:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4117:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4118:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4118:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZone.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4172:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4173:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4173:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZone.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4222:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4223:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4223:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZone.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4277:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4278:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4278:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZone.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4326:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4327:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4327:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZone.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4358:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4359:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4359:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZoneDetail.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4422:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4423:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4423:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZoneDetail.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4490:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4491:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4491:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZoneDetail.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4554:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4555:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4555:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZoneDetail.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4612:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4613:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4613:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename ManagementZoneDetail.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4653:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4654:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4654:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename MasterCrops.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4702:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4703:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4703:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename MasterCrops.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4751:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4751:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4752:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4752:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename MaterialBalance.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4791:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4791:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4792:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4792:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename MaterialPurchase.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4830:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4830:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4831:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4894:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4894:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4895:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4935:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4935:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4936:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4981:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4981:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>4982:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5031:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5031:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5032:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5064:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5064:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5065:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5100:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5101:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5101:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperationSubtype.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5155:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5156:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5156:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperationSubtype.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5205:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5206:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5206:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperationSubtype.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5260:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5261:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5261:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperationSubtype.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5309:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5310:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5310:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperationSubtype.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5341:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5342:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5342:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperationType.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5379:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5380:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5380:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroupContacts.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5436:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5437:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5437:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroupContacts.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5478:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5479:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5479:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroupContacts.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5522:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5523:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5523:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroups.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5577:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5578:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5578:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroups.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5627:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5628:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5628:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroups.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5682:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5683:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5683:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroups.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5731:16</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5732:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5732:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename OperatorGroups.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5763:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5763:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5829:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5829:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5887:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5887:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5915:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5915:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5962:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5962:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>5963:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6025:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6025:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6026:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6073:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6073:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6074:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6120:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6120:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6121:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6167:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6167:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6168:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6204:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6204:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation must have &quot;operationId&quot;.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6205:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6241:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6242:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6296:14</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6297:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6366:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6367:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6421:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6422:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6475:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6476:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6512:15</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6513:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6549:13</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation &quot;description&quot; must be present and non-empty string.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6550:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Operation tags must be defined in global tags.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6550:18</td>
+    <td class="severity clr-warning">warning</td>
+    <td>Tag names cannot use Pascal Case. Please rename VehicleTypes.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6587:15</td>
+    <td class="severity clr-error">error</td>
+    <td>&quot;security&quot; property type must be array.</td>
+</tr>
+
+<tr style="display:none" class="f-0">
+    <td>6588:13</td>
+    <td class="severity clr-error">error</td>
+    <td>Property &quot;schema&quot; is not expected to be here.</td>
+</tr>
+
+    </tbody>
+</table>
+<script type="text/javascript">
+    var groups = document.querySelectorAll("tr[data-group]");
+    for (var i = 0; i < groups.length; i++) {
+        groups[i].addEventListener("click", function() {
+            var inGroup = document.getElementsByClassName(this.getAttribute("data-group"));
+            this.innerHTML = (this.innerHTML.indexOf("+") > -1) ? this.innerHTML.replace("+", "-") : this.innerHTML.replace("-", "+");
+            for (var j = 0; j < inGroup.length; j++) {
+                inGroup[j].style.display = (inGroup[j].style.display !== "none") ? "none" : "table-row";
+            }
+        });
+    }
+</script>
+</body>
+</html>
