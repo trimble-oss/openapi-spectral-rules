@@ -1,0 +1,233 @@
+{
+    "formats": [
+      "oas3",
+      "oas2"
+    ],
+   "extends": [
+      ["spectral:oas","off"]
+    ],
+    "rules": {
+      "operation-operationId": ["off"],
+      "operation-operationId-unique":[
+          "warn"
+      ],
+      "operation-description" : [
+          "warn"
+      ],
+      "operation-tag-defined": [
+          "warn"
+      ],
+     "oas-api-info-should-have-description": {
+        "description": "info should have a description",
+        "message": "Please provide a description in the info tag",
+        "given": "$.info",
+        "severity": "warn",
+        "then": {
+          "field": "descriptio",
+          "function": "truthy"
+        }
+      },
+      "oas-api-contact-object-missing": {
+        "description": "Contact object is missing",
+        "message": "Info object should contain contact object",
+        "given": "$.info",
+        "severity": "warn",
+        "then": {
+          "field": "contact",
+          "function": "truthy"
+        }
+      }, 
+      "oas-api-contact-required-name-field": {
+        "description": "Contact object must have name",
+        "message": "Contact object should have a Organization/Sector name",
+        "given": "$.info",
+        "severity": "warn",
+        "then": {
+          "field": "contact.name",
+          "function": "truthy"
+        }
+      }, 
+      "oas-api-contact-required-url-field": {
+        "description": "Contact object must have url",
+        "message": "Contact object should have a valid url",
+        "given": "$.info",
+        "severity": "warn",
+        "then": {
+          "field": "contact.url",
+          "function": "truthy"
+        }
+      },
+      "oas-api-contact-required-email-fields": {
+        "description": "Contact object must have email",
+        "message": "Contact object should have a valid email",
+        "given": "$.info",
+        "severity": "warn",
+        "then": {
+          "field": "contact.email",
+          "function": "truthy"
+        }
+      },
+      "oas-api-license-object-missing": {
+        "description": "license url is missing",
+        "message": "license object is missing",
+        "given": "$.info",
+        "severity": "error",
+        "then": {
+          "field": "license",
+          "function": "truthy"
+        }
+      },
+      "oas-api-license-url-missing": {
+        "description": "license object is missing",
+        "message": "License object should have a link to the full text",
+        "given": "$.info",
+        "severity": "error",
+        "then": {
+          "field": "license.url",
+          "function": "truthy"
+        }
+      },
+     "oas-api-servers": {
+       "description": "OpenAPI `servers` must be present and non-empty array.",
+       "message": "Servers must be present and not empty",
+       "severity": "error",
+       "given": "$",
+       "then": {
+            "field": "servers",
+            "function": "schema",
+            "functionOptions": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "object"
+                },
+                "minItems": 1
+              }
+            }
+          }
+     },
+      "oas-api-server-url-has-no-trailing-slash": {
+        "message": "Server url should not have a trailing slash",
+        "given": [
+          "$.servers[*].url"
+        ],
+        "severity": "error",
+        "then": {
+          "function": "pattern",
+          "functionOptions": {
+            "notMatch": "/$"
+          }
+        }
+       
+        
+      },
+      "oas-api-server-lowercase": {
+        "given": [
+          "$.servers[*].url"
+        ],
+        "severity": "error",
+        "then": {
+          "function": "pattern",
+          "functionOptions": {
+            "match": "^[^A-Z]*$"
+          }
+        },
+        "message": "Server URL must be lowercase"
+        
+      },
+      "oas-api-https-only": {
+          "description": "Ensures that all APIs are only using HTTPS protocol as a transport.",
+          "message": "You must only use HTTPS for the server transport protocol.",
+          "formats": [
+            "oas3"
+          ],
+          "severity": "error",
+          "given": [
+              "$.servers[*].url"
+            ],
+          "then": {
+            "function": "pattern",
+            "functionOptions": {
+              "match": "/^https://"
+            }
+          }
+      },
+      "oas-api-paths-no-query-params": {
+        "given": [
+          "$.paths"
+        ],
+        "severity": "error",
+        "then": {
+          "function": "pattern",
+          "functionOptions": {
+            "notMatch": "\\?"
+          },
+          "field": "@key"
+        },
+        "message": "Path must not include query string"
+      },
+      "oas-api-operations-tags": {
+          "description": "Ensures that each of the operations have a tags property.",
+          "message": "All of your operations need to have tags.",
+          "severity": "error",
+          "given": "$.paths.*[get,post,patch,put,delete]",
+          "then": [
+            {
+              "field": "tags",
+              "function": "truthy"
+            }
+          ]
+      },
+      "oas-api-parameters-description": {
+          "description": "Ensures that that all parameters have a descriptions.",
+          "message": "Your parameters all need descriptions.",
+          "given": "$.paths.*.*.parameters[?(@.in=='header')]",
+          "severity": "warn",
+          "then": {
+            "field": "description",
+            "function": "truthy"
+          }
+        },
+        "oas-api-security-scheme-missing": {
+          "description": "Requires the security scheme.",
+          "message": "Must define a  security scheme",
+          "recommended": true,
+          "given": "$",
+          "severity": "error",
+          "then":[ {
+                "field": "components.securitySchemes.bearerAuth",
+                "function": "truthy"
+              }
+          ]
+        },
+        "oas-api-security-scheme-bearer": {
+          "description": "Requires the usage of Authorization header for security scheme.",
+          "message": "Must add bearer token in the Authorization header for security scheme.",
+          "given": "$.components.securitySchemes.bearerAuth",
+          "severity": "error",
+          "then": [
+            {
+              "field": "type",
+              "function": "pattern",
+              "functionOptions": {
+                "match": "^http"
+              }
+            },
+            {
+              "field": "scheme",
+              "function": "pattern",
+              "functionOptions": {
+                "match": "^bearer"
+              }
+            },
+            {
+              "field": "bearerFormat",
+              "function": "pattern",
+              "functionOptions": {
+                "match": "^JWT|^jwt"
+              }
+            }
+          ]
+      }
+    }
+  }
