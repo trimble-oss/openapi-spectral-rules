@@ -1,4 +1,7 @@
 extends: spectral:oas
+functionsDir: "./functions"
+functions:
+  - operation-summary-description
 rules:
   no-$ref-siblings: off
 
@@ -55,3 +58,13 @@ rules:
     then:
       field: string
       function: truthy
+  # Check that
+  tdp-operation-summary-description:
+    description: Operation summaries and description should not match
+    message: "{{error}}"
+    severity: warn
+    formats: ["oas3"]
+    given:
+      - $.paths[*].[get,post,put,patch,delete]
+    then:
+      function: operation-summary-description
