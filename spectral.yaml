@@ -6,7 +6,7 @@ rules:
   no-$ref-siblings: off
 
   # Reject Pascal Case within tags
-  tagpascalecase:
+  tdp-tag-pascal-case:
     severity: warn
     recommended: true
     message: Tag names cannot use Pascal Case. Please rename {{value}}.
@@ -20,7 +20,7 @@ rules:
         notMatch: "/[A-Z][a-z]+[A-Z][a-z]+$/g"
 
   # Reject Camel Case within tags
-  tagcamelcase:
+  tdp-tag-camel-case:
     description: Detects a tag with camelCase (personalItem) text within it
     severity: warn
     recommended: true
@@ -35,7 +35,7 @@ rules:
         notMatch: "/^[a-z]+[A-Z][a-z]+$/g"
 
   # Reject version within tags
-  tagnoversions:
+  tdp-tag-no-versions:
     severity: warn
     recommended: true
     message: Tag names cannot have version information {{value}}. Consider versioning your API.
@@ -58,7 +58,8 @@ rules:
     then:
       field: string
       function: truthy
-  # Check that
+
+  # Check operation summaries and descriptions should not match
   tdp-operation-summary-description:
     description: Operation summaries and description should not match
     message: "{{error}}"
