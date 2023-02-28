@@ -48,14 +48,68 @@ Lint the test spec locally
 spectral lint ./examples/v3.0/petstore.yaml \
     --ruleset ./spectral.yaml \
     --format html > ./results.html
+
+spectral lint ./examples/v3.0/petstore.yaml --ruleset ./spectral.yaml
+
+
+
+spectral lint ./examples/v3.0/petstore.yaml \
+    --ruleset ./spectral-owasp.yaml
+
+
 ```
 
 ## Trimble Rules
 
-### Test TDP minimum version
+#### ✅ Test TDP minimum version
 
-**tdp-minimum-spec-version**
+Warn if the spec version is less than 3.0
+
+#### ✅ tdp-minimum-spec-version
 
 Warn if spec version is not 3.0 or higher
+
+#### ✅ tdp-tag-pascal-case
+
+Tag names cannot use Pascal Case
+
+#### ✅ tdp-tag-camel-case
+
+Tag names cannot use Camel Case
+
+#### ✅ tdp-tag-no-versions
+
+Tag names cannot have version information
+
+#### ✅ tdp-operation-summary-description
+
+Operation summaries and descriptions should not match.
+Descriptions should be longer than summaries.
+
+#### ✅ tdp-operation-post-201-status-code
+
+All POST methods should have a 201 response.
+
+#### ✅ tdp-operation-delete-204-status-code
+
+All DELETE methods should have a 204 response.
+
+#### ✅ tdp-operation-400-response-body
+
+All 400 responses must include a response body.
+
+## References
+
+Learn about writing rules here:
+https://docs.stoplight.io/docs/spectral/d3482ff0ccae9-rules
+
+Learn about custom function here:
+https://docs.stoplight.io/docs/spectral/a781e290eb9f9-custom-functions
+
+JSONPath documentation:
+https://goessner.net/articles/JsonPath/index.html
+
+Useful web based tool for testing youe JSONPath values:
+http://jsonpath.com/
 
 Petstore examples are from [OpenAPI Initiative](https://github.com/OAI/OpenAPI-Specification/tree/main/examples)
