@@ -1,6 +1,5 @@
 extends:
   - spectral:oas
-  - https://unpkg.com/@stoplight/spectral-owasp-ruleset@1.1.1/dist/ruleset.js
 functionsDir: "./functions"
 functions:
   - operation-summary-description
