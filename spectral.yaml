@@ -35,6 +35,15 @@ rules:
         #pascal case
         notMatch: "/^[a-z]+[A-Z][a-z]+$/g"
 
+  # Require the description field within tags
+  tdp-tags-description:     
+    message: Tags must include a description
+    severity: warn
+    given: $.tags[*]
+    then:
+      field: description
+      function: truthy
+  
   # Reject version within tags
   tdp-tag-no-versions:
     severity: warn
