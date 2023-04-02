@@ -85,7 +85,7 @@ rules:
       function: truthy
 
   # Trimble Web API Standards
-  tdp-operation-post-201-202-status-code:
+  tdp-operation-post-201-status-code:
     description: All POST methods should have a 201 or 202 response.
     severity: error
     recommended: true
@@ -94,10 +94,7 @@ rules:
     given:
       - $.paths[*].post.responses
     then:
-      anyOf:
       - field: "201"
-        function: truthy
-      - field: "202"
         function: truthy
 
   # Trimble Web API Standards
