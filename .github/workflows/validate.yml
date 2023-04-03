@@ -1,0 +1,18 @@
+name: Run Spectral on Pull Requests
+
+on:
+  pull_request:
+      paths: 
+        - 'spectral.yaml'
+
+jobs:
+  build:
+    name: Run Spectral
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Run Spectral
+        uses: stoplightio/spectral-action@latest
+        with:
+          file_glob: 'example/'
+          spectral_ruleset: 'https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml'
