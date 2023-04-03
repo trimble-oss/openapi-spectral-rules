@@ -26,10 +26,12 @@ jobs:
   build:
     name: Run Spectral
     runs-on: ubuntu-latest
-
     steps:
-      - name: Run Spectral
-        uses: stoplightio/spectral-action@latest
+      # Check out the repository
+      - uses: actions/checkout@v2
+
+      # Run Spectral
+      - uses: stoplightio/spectral-action@latest
         with:
-          file_glob: 'example/v3.0/patstore.yaml'
+          file_glob: 'examples/**/*.yaml'
           spectral_ruleset: 'https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml'
