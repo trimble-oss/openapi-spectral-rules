@@ -1,6 +1,7 @@
 name: Run Spectral on Pull Requests
 
 on:
+  workflow_dispatch:
   pull_request:
       paths: 
         - 'spectral.yaml'
@@ -14,5 +15,5 @@ jobs:
       - name: Run Spectral
         uses: stoplightio/spectral-action@latest
         with:
-          file_glob: 'example/'
+          file_glob: 'example/v3.0/patstore.yaml'
           spectral_ruleset: 'https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml'
