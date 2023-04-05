@@ -61,10 +61,6 @@ spectral lint ./examples/v3.0/petstore.yaml \
 
 ## Trimble Rules
 
-#### ✅ Test TDP minimum version
-
-Warn if the spec version is less than 3.0
-
 #### ✅ tdp-minimum-spec-version
 
 Warn if spec version is not 3.0 or higher
