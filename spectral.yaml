@@ -1,5 +1,5 @@
 extends:
-  - spectral:oas
+  - [spectral:oas, all]
 functionsDir: "./functions"
 functions:
   - operation-summary-description

@@ -6,6 +6,11 @@ info:
     name: MIT
 servers:
   - url: http://petstore.swagger.io/v1
+tags:
+  - name: cats
+    description: Everything about your Cats
+  - name: dogs
+    description: Everything about your Dogs
 paths:
   /pets:
     get:
@@ -46,7 +51,7 @@ paths:
       tags:
         - pets
       responses:
-        "201":
+        "202":
           description: Null response
         default:
           description: unexpected error
