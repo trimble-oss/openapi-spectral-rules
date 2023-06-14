@@ -82,9 +82,9 @@ Tag names cannot have version information
 Operation summaries and descriptions should not match.
 Descriptions should be longer than summaries.
 
-#### ✅ tdp-operation-post-201-status-code
+#### ✅ tdp-operation-post-201-202-status-code
 
-All POST methods should have a 201 response.
+All POST methods should have a 201 or 202 response. [POST (create) - Successful Responses](https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx)
 
 #### ✅ tdp-operation-delete-204-status-code
 
