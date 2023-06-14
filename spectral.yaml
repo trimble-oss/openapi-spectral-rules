@@ -3,6 +3,7 @@ extends:
 functionsDir: "./functions"
 functions:
   - operation-summary-description
+  - operation-post-201-202-status-code
 rules:
   no-$ref-siblings: off
 
@@ -85,7 +86,7 @@ rules:
       function: truthy
 
   # Trimble Web API Standards
-  tdp-operation-post-201-status-code:
+  tdp-operation-post-201-202-status-code:
     description: All POST methods should have a 201 or 202 response.
     severity: error
     recommended: true
@@ -94,8 +95,7 @@ rules:
     given:
       - $.paths[*].post.responses
     then:
-      - field: "201"
-        function: truthy
+      function: operation-post-201-202-status-code
 
   # Trimble Web API Standards
   tdp-operation-400-response-body:
