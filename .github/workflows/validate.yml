@@ -1,26 +1,10 @@
 name: Run Spectral on Pull Requests
 
 on:
-  workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-          - info
-          - warning
-          - debug
-      print_tags:
-        description: 'True to print to STDOUT'
-        required: true
-        type: boolean
-      tags:
-        description: 'Test scenario tags'
-        required: true
-        type: string
-
+  pull_request:
+    branches:
+      - main
+      - stage
 
 jobs:
   build:
@@ -33,5 +17,5 @@ jobs:
       # Run Spectral
       - uses: stoplightio/spectral-action@latest
         with:
-          file_glob: 'examples/**/*.yaml'
-          spectral_ruleset: 'https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml'
+          file_glob: "examples/**/*.yaml"
+          spectral_ruleset: "https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml"
