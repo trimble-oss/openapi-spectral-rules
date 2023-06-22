@@ -33,7 +33,7 @@ rules:
     then:
       function: pattern
       functionOptions:
-        #pascal case
+        #camel case
         notMatch: "/^[a-z]+[A-Z][a-z]+$/g"
 
   # Reject version within tags
@@ -109,3 +109,17 @@ rules:
     then:
       field: content
       function: truthy
+
+# Validate for request and response bodies
+  tdp-request-and-response-content:
+    description: Request bodies and non [204, 202] responses should define a content object
+    severity: warn
+    recommended: true
+    formats:
+      - oas3
+    given: 
+      - $.paths[*][get,post,put,patch,delete].responses[?(@property != '204' && @property != '202')]
+      - $.paths[*][*].requestBody
+    then: 
+      field: content
+      function: truthy      
