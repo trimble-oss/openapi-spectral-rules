@@ -1,0 +1,264 @@
+openapi: 3.0.1
+info:
+  title: apim
+  version: v3.0
+  description: APICloud Management APIs
+  contact:
+    email: apicloud_user@trimble.com
+    name: APICloud Admin
+    url: 'https://support.trimble.cloud/support/login'
+  license:
+    name: APICloud License
+    url: 'https://api.trimble.com/licences'
+servers:
+  - url: 'https://eu-az.api.trimble.com/product/profile/v1-dev'
+  - url: 'https://eu-aws.api.trimble.com/product/profiles/v1'
+  - url: 'https://us-aws.api.trimble.com/product/profiles/v3-qa'
+  - url: 'https://us-az.api.trimble.com/product/profiles/v22'
+  - url: 'https://eu-az.api.trimble.com/product/profiles/v399999'
+  - url: 'https://eu-az.api.trimble.com/product/profile/v10-dev'
+  - url: 'https://eu-aws.api.trimble.com/product/profiles/v1-stage/users-dev'
+  - url: 'https://us-aws.api.trimble.com/product/profiles/v3/user-info'
+  - url: 'https://us-az.api.trimble.com/product/profiles/v12345678901234'
+  - url: 'https://eu-az.api.trimble.com/product/profiles/v399999/image/picture/error'
+  - url: 'https://eu-az.api.trimble.com/product/profiles/v1'
+  - url: 'https://eu-az.api.trimble.com/product/profiles/v10000-dev/user_info'
+tags:
+  - name: API Product Management
+    description: |
+      API calls to create and manage API versions and deployments.
+paths:
+  /apis:
+    get:
+      description: Get all apis
+      operationId: '12'
+      tags:
+        - API Product Management
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: team_uuid
+          required: true
+          description: team uuid from the profiles
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: {}
+    post:
+      tags:
+        - API Product Management
+      summary: Create a team api
+      description: This is used to create the team apis
+      operationId: '1'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: team_uuid
+          required: true
+          description: team uuid from the profiles
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Name of the api product
+                description:
+                  type: string
+                basePath:
+                  type: object
+                  description: alternate basepath of the api product
+                tags:
+                  type: array
+                  items:
+                    type: string
+                apiType:
+                  type: string
+                  example: TEAM | PUBLIC
+                apiInternal:
+                  type: boolean
+                approvalType:
+                  type: string
+                  example: MANUAL | AUTO
+              required:
+                - name
+                - description
+                - api_type
+                - api_internal
+            examples:
+              create-api:
+                value:
+                  name: example-api
+                  description: Example API description
+                  base_path: example
+                  tags:
+                    - proxy
+                    - api
+                  api_type: TEAM
+                  api_internal: true
+                  approval_type: MANUAL
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  uuid:
+                    type: string
+              examples:
+                create-api-response:
+                  value:
+                    uuid: de412c72-f457-4f1b-81b7-73b99e6dbd92
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                validation-error:
+                  value:
+                    code: Validation Error
+                    message: >-
+                      {'description': ['description field is required.'],
+                      'name': ['name field is required.', 'API name length
+                      should not exceed 50 characters.', 'name is invalid'],
+                      'base_path': ['base_path is invalid']}
+        '401':
+          description: UnAuthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                authz-not-authorized:
+                  value:
+                    code: AZ1004
+                    message: You are not authorized to create this API
+                token-expired-or-invalid:
+                  value:
+                    message: >-
+                      User is not authorized to access this resource with an
+                      explicit deny
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  code:
+                    type: string
+                  message:
+                    type: string
+              examples:
+                api-name-exists:
+                  value:
+                    code: CT1001
+                    message: API name already exists
+  '/apis/{api_id}/versions/{version_id}':
+    get:
+      operationId: '123'
+      description: Get version details
+      tags:
+        - API Product Management
+      parameters:
+        - name: api_id
+          in: path
+          required: true
+          description: The id of the api to retrieve
+          schema:
+            type: string
+        - name: version_id
+          in: path
+          required: true
+          description: The id of the version to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data: {}
+    delete:
+      operationId: '1234'
+      description: Delete version
+      tags:
+        - API Product Management
+      parameters:
+        - name: api_id
+          in: path
+          required: true
+          description: The id of the api to retrieve
+          schema:
+            type: string
+        - name: version_id
+          in: path
+          required: true
+          description: The id of the version to retrieve
+          schema:
+            type: string
+      responses:
+        '204':
+          description: OK
+components:
+  securitySchemes:
+    BasicAuth:
+      type: http
+      scheme: basic
+    bearerAuth:
+      type: http
+      scheme: bearer
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+    OpenID:
+      type: openIdConnect
+      openIdConnectUrl: 'https://example.com/.well-known/openid-configuration'
+    OAuth2:
+      type: oauth2
+      flows:
+        authorizationCode:
+          authorizationUrl: 'https://example.com/oauth/authorize'
+          tokenUrl: 'https://example.com/oauth/token'
+          scopes:
+            read: Grants read access
+            write: Grants write access
+            admin: Grants access to admin operations
