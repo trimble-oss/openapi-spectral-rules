@@ -4,6 +4,18 @@ functionsDir: "./functions"
 functions:
   - operation-summary-description
   - operation-post-201-202-status-code
+  - validURLChecker
+  - validVersionChecker
+  - isAPluralNoun
+  - isValidSpec
+  - noHttpVerbsInPath
+  - validHttpResponse
+  - checkIfResponseBodyJsonInGetResponse
+  - doesSpecContainsValidHttpVerbs
+  - checkForQueryParameterInEveryPath
+  - checkIfApplicationOrJsonInPutAndPostResponse
+
+
 rules:
   no-$ref-siblings: off
 
@@ -122,4 +134,113 @@ rules:
       - $.paths[*][*].requestBody
     then: 
       field: content
-      function: truthy      
+      function: truthy    
+
+#Validate Server URL
+  tdp-api-server-url-invalid:
+    description: API URLs should meet the Trimble API Standards
+    message: "{{error}}"
+    given: "$.servers"
+    severity: warn
+    then:
+      function: validURLChecker
+
+#Validate Server URL version standards
+  tdp-api-server-url-version-invalid:
+    description: API URLs versions should meet the Trimble API Standards
+    message: "{{error}}"
+    given: "$.servers"
+    severity: warn
+    then:
+      function: validVersionChecker
+      
+#Validate Server URL
+  tdp-api-paths-should-start-with-a-noun:
+    description: API paths should start with a noun
+    message: "{{error}}"
+    given: "$.paths"
+    severity: error
+    then:
+      field: "@key"
+      function: isAPluralNoun
+      
+#Field Names must support only Camel Casing
+  openapi-v3-schema-properties-names-camel-case:
+    description: Ensuring that schema property names are camel case.
+    message: All schema property names should be camel case.
+    severity: error
+    given: "$..properties.."
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match:  "^[a-z][a-zA-Z0-9]*$"
+      errorMessage: All field names MUST be formatted as camel case.
+      
+#Resource path must not contain HTTP verbs
+  no-http-verbs-in-path:
+    description: HTTP verbs should be not be in URL paths
+    message: "{{property}} has HTTP verb in path: {{error}}"
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: noHttpVerbsInPath
+
+#Structured data should support JSON as the default format in request body
+  structured-data-format:
+    description: All APIs returning structured data should support JSON as the default format.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: checkIfApplicationOrJsonInPutAndPostResponse
+
+#Structured data should support JSON in response body
+  structured-data-format-support-json-response-body:
+    description: All APIs returning structured data should support JSON as the default format.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: checkIfResponseBodyJsonInGetResponse
+
+#Validate all APIs returns valid HTTP response code
+  http-response-code:
+    description: All APIs should return a valid http response code.
+    severity: warn
+    message: "{{error}}"
+    given: "$..responses"
+    then:
+      field: "@key"
+      function: validHttpResponse
+
+#Resource path should not contain query params
+  check-queryparameter-in-endpoint:
+    description: Check if the given endpoint has queryparameter.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: checkForQueryParameterInEveryPath
+
+#Validate whether spec contains only valid HTTP verbs
+  is-spec-contains-valid-http-verbs:
+    description: I am currently testing my linting work.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*"
+    then:
+      field: "@key"
+      function: doesSpecContainsValidHttpVerbs
+
+#Spec should not be empty
+  spec-should-not-be-empty:
+    description: spec should not be empty.
+    severity: error
+    message: "{{error}}"
+    given: '$'
+    then:
+      function: isValidSpec  
