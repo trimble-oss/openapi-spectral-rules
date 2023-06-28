@@ -1,4 +1,4 @@
-const isAPluralNoun = function(input){
+module.exports = (input) => {
 	var pos = require('pos');
 	var tagger = new pos.Tagger();
 	var split_words = input.replace(/^\//,'').split(/\/{[-_a-z]{0,}}{0,}\/{0,}/).filter(function(e){return e}); 
@@ -21,4 +21,3 @@ const isAPluralNoun = function(input){
 		  }	
 	}
 }
-export default isAPluralNoun;

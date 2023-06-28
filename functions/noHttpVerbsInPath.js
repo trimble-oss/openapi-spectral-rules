@@ -13,7 +13,7 @@ function hasHttpVerb(url) {
 
   return false;
 }
-const noHttpVerbsInPath = function(input){
+module.exports = (input) => {
 	
 	var hasVerbs = hasHttpVerb(input);
 
@@ -22,5 +22,3 @@ const noHttpVerbsInPath = function(input){
 			message: "Resource Path should not include HTTP verbs"
 		}]
 }
-
-export default noHttpVerbsInPath;

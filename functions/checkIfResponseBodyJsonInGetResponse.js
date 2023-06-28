@@ -1,4 +1,4 @@
-const checkIfApplicationOrJsonInPutAndPostResponse = function(input) {
+module.exports = (input) => {
 	var get_response = input["GET"] ? input["GET"]: input["get"]
 	if (get_response ) {
 
@@ -28,5 +28,4 @@ const checkIfApplicationOrJsonInPutAndPostResponse = function(input) {
 	  	}]
 	}
   };
- export default checkIfApplicationOrJsonInPutAndPostResponse;
 

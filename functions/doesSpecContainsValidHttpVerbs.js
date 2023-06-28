@@ -1,4 +1,4 @@
-const doesSpecContainsValidHttpVerbs = function(input) {
+module.exports = (input) => {
 
     const httpVerbs = ['get', 'post', 'put', 'delete', 'patch', 'trace', 'options', 'head', 'connect'];
 
@@ -9,4 +9,3 @@ const doesSpecContainsValidHttpVerbs = function(input) {
       } 
     
 }
-export default doesSpecContainsValidHttpVerbs;

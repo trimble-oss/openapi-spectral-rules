@@ -1,4 +1,4 @@
-const checkForQueryParameterInEveryPath = function(input) {
+module.exports = (input) =>{
 
     const pattern = /\?([^=]+=[^&]+)(&[a-zA-Z0-9]{0,}=.*)?/g;
     const matches = input.match(pattern);
@@ -11,4 +11,3 @@ const checkForQueryParameterInEveryPath = function(input) {
 
     
 }
-export default checkForQueryParameterInEveryPath

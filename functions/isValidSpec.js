@@ -1,4 +1,4 @@
-const isValidSpec = function(input) {
+module.exports = (input) => {
   if (JSON.stringify(input) === "{}") {
     return [
       {
@@ -13,4 +13,3 @@ const isValidSpec = function(input) {
     ];
   }
 };
-export default isValidSpec;

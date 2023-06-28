@@ -1,4 +1,4 @@
-const validURLChecker = function(input){
+module.exports = (input) => {
 	for (let index in input)
 	{
 
@@ -14,4 +14,3 @@ const validURLChecker = function(input){
 	}
 	
 }
-export default validURLChecker;

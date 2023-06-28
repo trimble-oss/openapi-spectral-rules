@@ -1,4 +1,4 @@
-const validVersionChecker = function(input){
+module.exports = (input) => {
 	for (let index in input)
 	{
 		let url =(input[index]['url'])
@@ -13,4 +13,3 @@ const validVersionChecker = function(input){
 	
 }
 
-export default validVersionChecker;
