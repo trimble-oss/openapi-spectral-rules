@@ -4,6 +4,7 @@ functionsDir: "./functions"
 functions:
   - operation-summary-description
   - operation-post-201-202-status-code
+
 rules:
   no-$ref-siblings: off
 
@@ -65,6 +66,7 @@ rules:
   tdp-operation-summary-description:
     description: Operation summaries and description should not match
     message: "{{error}}"
+    documentationUrl: https://github.com/trimble-oss/openapi-spectral-rules/blob/main/openapi-style-guide.md
     severity: warn
     formats: ["oas3"]
     given:
@@ -110,16 +112,16 @@ rules:
       field: content
       function: truthy
 
-# Validate for request and response bodies
+  # Validate for request and response bodies
   tdp-request-and-response-content:
     description: Request bodies and non [204, 202] responses should define a content object
     severity: warn
     recommended: true
     formats:
       - oas3
-    given: 
+    given:
       - $.paths[*][get,post,put,patch,delete].responses[?(@property != '204' && @property != '202')]
       - $.paths[*][*].requestBody
-    then: 
+    then:
       field: content
-      function: truthy      
+      function: truthy
