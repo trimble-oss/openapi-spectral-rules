@@ -6,19 +6,7 @@
  "extends": [
     ["spectral:oas","off"]
   ],
- "functions": [
-      "validURLChecker",
-      "validVersionChecker",
-      "isAPluralNoun",
-      "isValidSpec",
-      "noHttpVerbsInPath",
-      "validHttpResponse",
-      "checkIfResponseBodyJsonInGetResponse",
-      "checkIfApplicationOrJsonInPutAndPostResponse",
-      "checkForQueryParameterInEveryPath",
-      "doesSpecContainsValidHttpVerbs",
-      "operation-summary-description"
-  ],
+ "functions": ["valid-url-checker", "valid-version-checker", "is-a-plural-noun", "no-http-verbs-in-path", "check-if-application-or-json-in-put-and-post-response", "check-if-response-body-json-in-get-response", "valid-http-response", "check-for-query-parameter-in-every-path", "does-spec-contains-valid-http-verbs", "is-valid-spec", "operation-summary-description", "operation-post-201-202-status-code"],
   "rules": {
     "oas-api-info-should-have-description": {
       "description": "info should have a description",
@@ -238,7 +226,7 @@
         "given": "$.servers",
         "severity": "warn",
         "then": {
-            "function": "validURLChecker"
+            "function": "valid-url-checker"
         }
     },
     "tdp-api-server-url-version-invalid": {
@@ -247,7 +235,7 @@
         "given": "$.servers",
         "severity": "warn",
         "then": {
-            "function": "validVersionChecker"
+            "function": "valid-version-checker"
         }
     },
     "tdp-api-paths-should-start-with-a-noun": {
@@ -257,7 +245,7 @@
         "severity": "error",
         "then": {
             "field": "@key",
-            "function": "isAPluralNoun"
+            "function": "is-a-plural-noun"
         }
     },
     "openapi-v3-schema-properties-names-camel-case": {
@@ -282,7 +270,7 @@
         "given": "$.paths",
         "then": {
             "field": "@key",
-            "function": "noHttpVerbsInPath"
+            "function": "no-http-verbs-in-path"
         }
     },
     "structured-data-format": {
@@ -291,7 +279,7 @@
         "message": "{{error}}",
         "given": "$.paths.*.",
         "then": {
-            "function": "checkIfApplicationOrJsonInPutAndPostResponse"
+            "function": "check-if-application-or-json-in-put-and-post-response"
         }
     },
     "structured-data-format-support-json-response-body": {
@@ -300,7 +288,7 @@
         "message": "{{error}}",
         "given": "$.paths.*.",
         "then": {
-            "function": "checkIfResponseBodyJsonInGetResponse"
+            "function": "check-if-response-body-json-in-get-response"
         }
     },
     "http-response-code": {
@@ -310,7 +298,7 @@
         "given": "$..responses",
         "then": {
             "field": "@key",
-            "function": "validHttpResponse"
+            "function": "valid-http-response"
         }
     },
     "check-queryparameter-in-endpoint": {
@@ -320,7 +308,7 @@
         "given": "$.paths",
         "then": {
             "field": "@key",
-            "function": "checkForQueryParameterInEveryPath"
+            "function": "check-for-query-parameter-in-every-path"
         }
     },
     "is-spec-contains-valid-http-verbs": {
@@ -330,7 +318,7 @@
         "given": "$.paths.*",
         "then": {
             "field": "@key",
-            "function": "doesSpecContainsValidHttpVerbs"
+            "function": "does-spec-contains-valid-http-verbs"
         }
     },
     "spec-should-not-be-empty": {
@@ -339,7 +327,7 @@
         "message": "{{error}}",
         "given": "$",
         "then": {
-            "function": "isValidSpec"
+            "function": "is-valid-spec"
         }
     },
     "tdp-tag-pascal-case": {

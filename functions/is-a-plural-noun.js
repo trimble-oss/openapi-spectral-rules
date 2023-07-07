@@ -16,7 +16,7 @@ module.exports = (input) => {
 		}
 		if(i!==0 && !nounList.includes(taggedWords[0][1])){
 			return [{
-				message : "The rest of root resource names in the URL should be a noun in plural or singular form."
+				message : "The first root resource name in the URL MUST be a noun and MUST be in the plural form. The rest of root resource names in the URL should be a noun in plural or singular form."
 			}]
 		  }	
 	}
