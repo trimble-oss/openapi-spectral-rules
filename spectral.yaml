@@ -1,6 +1,23 @@
 ---
-functions: [valid-url-checker, valid-version-checker, is-a-plural-noun, no-http-verbs-in-path, check-if-application-or-json-in-put-and-post-response, check-if-response-body-json-in-get-response, valid-http-response, check-for-query-parameter-in-every-path, does-spec-contains-valid-http-verbs, is-valid-spec, operation-summary-description, operation-post-201-202-status-code]
+extends:
+  - [spectral:oas, all]
+functionsDir: "./functions"
+functions: 
+  - valid-url-checker
+  - valid-version-checker
+  - is-a-plural-noun
+  - no-http-verbs-in-path
+  - check-if-application-or-json-in-put-and-post-response
+  - check-if-response-body-json-in-get-response
+  - valid-http-response
+  - check-for-query-parameter-in-every-path
+  - does-spec-contains-valid-http-verbs
+  - is-valid-spec
+  - operation-summary-description
+  - operation-post-201-202-status-code
 rules:
+  no-$ref-siblings: off
+
   # Server URLs should follow Trimble API Standards presented in Cloud URL Structure Summary
   # https://api-standards.trimble-pnp.com/api-standard/http#url-structure
   tas-api-server-url-invalid:
