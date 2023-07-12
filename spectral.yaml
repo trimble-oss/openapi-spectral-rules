@@ -1,11 +1,139 @@
+---
 extends:
   - [spectral:oas, all]
 functionsDir: "./functions"
-functions:
+functions: 
+  - valid-url-checker
+  - valid-version-checker
+  - is-a-plural-noun
+  - no-http-verbs-in-path
+  - check-if-application-or-json-in-put-and-post-response
+  - check-if-response-body-json-in-get-response
+  - valid-http-response
+  - check-for-query-parameter-in-every-path
+  - does-spec-contains-valid-http-verbs
+  - is-valid-spec
   - operation-summary-description
   - operation-post-201-202-status-code
 rules:
   no-$ref-siblings: off
+
+  # Server URLs should follow Trimble API Standards presented in Cloud URL Structure Summary
+  # https://api-standards.trimble-pnp.com/api-standard/http#url-structure
+  tas-api-server-url-invalid:
+    description: API URLs should meet the Trimble API Standards
+    message: "{{error}}"
+    given: "$.servers"
+    severity: warn
+    then:
+      function: valid-url-checker
+
+  # API Version must include the major version and MUST NOT include the minor version
+  # https://api-standards.trimble-pnp.com/api-standard/http#url-versioning
+  tas-api-server-url-version-invalid:
+    description: API URLs versions should meet the Trimble API Standards
+    message: "{{error}}"
+    given: "$.servers"
+    severity: warn
+    then:
+      function: valid-version-checker
+
+  # Resource names in the URL must be a noun 
+  # https://api-standards.trimble-pnp.com/api-standard/http#resource-naming 
+  tas-api-paths-should-start-with-a-noun:
+    description: The root resource name in the URL MUST be a noun and MUST be in the plural form. Further nouns MAY be in the singular.
+    message: "{{error}}"
+    given: "$.paths"
+    severity: error
+    then:
+      field: "@key"
+      function: is-a-plural-noun
+
+  # All schema property names should be camel case.
+  # https://api-standards.trimble-pnp.com/api-standard/http#field-names 
+  tas-openapi-v3-schema-properties-names-camel-case:
+    description: Ensuring that schema property names are camel case.
+    message: All schema property names should be camel case.
+    severity: error
+    given: "$..properties.."
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match:  "^[a-z][a-zA-Z0-9]*$"
+      errorMessage: All field names MUST be formatted as camel case.
+      
+  # Resource path should not contain HTTP verbs
+  # https://api-standards.trimble-pnp.com/api-standard/http#avoiding-actions-in-resource-names
+  tas-no-http-verbs-in-path:
+    description: HTTP verbs should be not be in URL paths
+    message: "{{property}} has HTTP verb in path: {{error}}"
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: no-http-verbs-in-path
+
+  # All APIs returning structured data should support JSON as the default format
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts    
+  tas-structured-data-format:
+    description: All APIs returning structured data should support JSON as the default format.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: check-if-application-or-json-in-put-and-post-response
+
+  # All APIs returning structured data should support JSON as the default format.
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts 
+  tas-structured-data-format-support-json-response-body:
+    description: All APIs returning structured data should support JSON as the default format.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: check-if-response-body-json-in-get-response
+  
+  # All APIs should return a valid http response code (Additional ruleset)
+  tdp-http-response-code:
+    description: All APIs should return a valid http response code.
+    severity: warn
+    message: "{{error}}"
+    given: "$..responses"
+    then:
+      field: "@key"
+      function: valid-http-response
+
+  # Resource path should not contain query parameter
+  # https://api-standards.trimble-pnp.com/api-standard/http#url-parameters
+  tas-check-queryparameter-in-endpoint:
+    description: Check if the given resource path has queryparameter.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: check-for-query-parameter-in-every-path
+
+ # Spec should contain only valid http verbs (Additional ruleset)
+  tdp-does-spec-contains-valid-http-verbs:
+    description: All APIs should have a valid http verb.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*"
+    then:
+      field: "@key"
+      function: does-spec-contains-valid-http-verbs
+
+  # Restrict empty spec(Additional ruleset)
+  tdp-spec-should-not-be-empty:
+    description: Spec should not be empty.
+    severity: error
+    message: "{{error}}"
+    given: '$'
+    then:
+      function: is-valid-spec
 
   # Reject Pascal Case within tags
   tdp-tag-pascal-case:
@@ -72,8 +200,9 @@ rules:
     then:
       function: operation-summary-description
 
-  # Trimble Web API Standards
-  tdp-operation-delete-204-status-code:
+  # All DELETE methods should have a 204 response
+  # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
+  tas-operation-delete-204-status-code:
     description: All DELETE methods should have a 204 response.
     severity: error
     recommended: true
@@ -85,7 +214,8 @@ rules:
       field: "204"
       function: truthy
 
-  # Trimble Web API Standards
+  # All POST methods should have a 201 or 202 response.
+  # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
   tdp-operation-post-201-202-status-code:
     description: All POST methods should have a 201 or 202 response.
     severity: error
@@ -97,8 +227,9 @@ rules:
     then:
       function: operation-post-201-202-status-code
 
-  # Trimble Web API Standards
-  tdp-operation-400-response-body:
+  # All 400 responses must include a response body
+  # https://api-standards.trimble-pnp.com/api-standard/http#client-error-responses-4xx
+  tas-operation-400-response-body:
     description: All 400 responses must include a response body.
     severity: error
     recommended: true
@@ -109,17 +240,3 @@ rules:
     then:
       field: content
       function: truthy
-
-# Validate for request and response bodies
-  tdp-request-and-response-content:
-    description: Request bodies and non [204, 202] responses should define a content object
-    severity: warn
-    recommended: true
-    formats:
-      - oas3
-    given: 
-      - $.paths[*][get,post,put,patch,delete].responses[?(@property != '204' && @property != '202')]
-      - $.paths[*][*].requestBody
-    then: 
-      field: content
-      function: truthy      

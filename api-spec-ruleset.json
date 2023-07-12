@@ -1,233 +1,455 @@
 {
-    "formats": [
-      "oas3",
-      "oas2"
-    ],
-   "extends": [
-      ["spectral:oas","off"]
-    ],
-    "rules": {
-      "operation-operationId": ["off"],
-      "operation-operationId-unique":[
-          "warn"
-      ],
-      "operation-description" : [
-          "warn"
-      ],
-      "operation-tag-defined": [
-          "warn"
-      ],
-     "oas-api-info-should-have-description": {
-        "description": "info should have a description",
-        "message": "Please provide a description in the info tag",
-        "given": "$.info",
-        "severity": "warn",
-        "then": {
-          "field": "descriptio",
-          "function": "truthy"
-        }
-      },
-      "oas-api-contact-object-missing": {
-        "description": "Contact object is missing",
-        "message": "Info object should contain contact object",
-        "given": "$.info",
-        "severity": "warn",
-        "then": {
-          "field": "contact",
-          "function": "truthy"
-        }
-      }, 
-      "oas-api-contact-required-name-field": {
-        "description": "Contact object must have name",
-        "message": "Contact object should have a Organization/Sector name",
-        "given": "$.info",
-        "severity": "warn",
-        "then": {
-          "field": "contact.name",
-          "function": "truthy"
-        }
-      }, 
-      "oas-api-contact-required-url-field": {
-        "description": "Contact object must have url",
-        "message": "Contact object should have a valid url",
-        "given": "$.info",
-        "severity": "warn",
-        "then": {
-          "field": "contact.url",
-          "function": "truthy"
-        }
-      },
-      "oas-api-contact-required-email-fields": {
-        "description": "Contact object must have email",
-        "message": "Contact object should have a valid email",
-        "given": "$.info",
-        "severity": "warn",
-        "then": {
-          "field": "contact.email",
-          "function": "truthy"
-        }
-      },
-      "oas-api-license-object-missing": {
-        "description": "license url is missing",
-        "message": "license object is missing",
-        "given": "$.info",
-        "severity": "error",
-        "then": {
-          "field": "license",
-          "function": "truthy"
-        }
-      },
-      "oas-api-license-url-missing": {
-        "description": "license object is missing",
-        "message": "License object should have a link to the full text",
-        "given": "$.info",
-        "severity": "error",
-        "then": {
-          "field": "license.url",
-          "function": "truthy"
-        }
-      },
-     "oas-api-servers": {
-       "description": "OpenAPI `servers` must be present and non-empty array.",
-       "message": "Servers must be present and not empty",
-       "severity": "error",
-       "given": "$",
-       "then": {
-            "field": "servers",
-            "function": "schema",
-            "functionOptions": {
-              "schema": {
-                "type": "array",
-                "items": {
-                  "type": "object"
-                },
-                "minItems": 1
-              }
+  "formats": [
+    "oas3",
+    "oas2"
+  ],
+ "extends": [
+    ["spectral:oas","off"]
+  ],
+ "functions": ["valid-url-checker", "valid-version-checker", "is-a-plural-noun", "no-http-verbs-in-path", "check-if-application-or-json-in-put-and-post-response", "check-if-response-body-json-in-get-response", "valid-http-response", "check-for-query-parameter-in-every-path", "does-spec-contains-valid-http-verbs", "is-valid-spec", "operation-summary-description", "operation-post-201-202-status-code"],
+  "rules": {
+    "oas-api-info-should-have-description": {
+      "description": "info should have a description",
+      "message": "Please provide a description in the info tag",
+      "given": "$.info",
+      "severity": "warn",
+      "then": {
+        "field": "description",
+        "function": "truthy"
+      }
+    },
+    "oas-api-contact-object-missing": {
+      "description": "Contact object is missing",
+      "message": "Info object should contain contact object",
+      "given": "$.info",
+      "severity": "warn",
+      "then": {
+        "field": "contact",
+        "function": "truthy"
+      }
+    }, 
+    "oas-api-contact-required-name-field": {
+      "description": "Contact object must have name",
+      "message": "Contact object should have a Organization/Sector name",
+      "given": "$.info",
+      "severity": "warn",
+      "then": {
+        "field": "contact.name",
+        "function": "truthy"
+      }
+    }, 
+    "oas-api-contact-required-url-field": {
+      "description": "Contact object must have url",
+      "message": "Contact object should have a valid url",
+      "given": "$.info",
+      "severity": "warn",
+      "then": {
+        "field": "contact.url",
+        "function": "truthy"
+      }
+    },
+    "oas-api-contact-required-email-fields": {
+      "description": "Contact object must have email",
+      "message": "Contact object should have a valid email",
+      "given": "$.info",
+      "severity": "warn",
+      "then": {
+        "field": "contact.email",
+        "function": "truthy"
+      }
+    },
+    "oas-api-license-object-missing": {
+      "description": "license url is missing",
+      "message": "license object is missing",
+      "given": "$.info",
+      "severity": "error",
+      "then": {
+        "field": "license",
+        "function": "truthy"
+      }
+    },
+    "oas-api-license-url-missing": {
+      "description": "license object is missing",
+      "message": "License object should have a link to the full text",
+      "given": "$.info",
+      "severity": "error",
+      "then": {
+        "field": "license.url",
+        "function": "truthy"
+      }
+    },
+    "oas-api-servers": {
+     "description": "OpenAPI `servers` must be present and non-empty array.",
+     "message": "Servers must be present and not empty",
+     "severity": "error",
+     "given": "$",
+     "then": {
+          "field": "servers",
+          "function": "schema",
+          "functionOptions": {
+            "schema": {
+              "type": "array",
+              "items": {
+                "type": "object"
+              },
+              "minItems": 1
             }
           }
-     },
-      "oas-api-server-url-has-no-trailing-slash": {
-        "message": "Server url should not have a trailing slash",
-        "given": [
-          "$.servers[*].url"
-        ],
-        "severity": "error",
-        "then": {
-          "function": "pattern",
-          "functionOptions": {
-            "notMatch": "/$"
-          }
         }
-       
-        
+   },
+    "oas-api-server-url-has-no-trailing-slash": {
+      "message": "Server url should not have a trailing slash",
+      "given": [
+        "$.servers[*].url"
+      ],
+      "severity": "error",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "/$"
+        }
+      }
+     
+      
+    },
+    "oas-api-server-lowercase": {
+      "given": [
+        "$.servers[*].url"
+      ],
+      "severity": "error",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "match": "^[^A-Z]*$"
+        }
       },
-      "oas-api-server-lowercase": {
-        "given": [
-          "$.servers[*].url"
+      "message": "Server URL must be lowercase"
+      
+    },
+    "oas-api-https-only": {
+        "description": "Ensures that all APIs are only using HTTPS protocol as a transport.",
+        "message": "You must only use HTTPS for the server transport protocol.",
+        "formats": [
+          "oas3"
         ],
         "severity": "error",
-        "then": {
-          "function": "pattern",
-          "functionOptions": {
-            "match": "^[^A-Z]*$"
-          }
-        },
-        "message": "Server URL must be lowercase"
-        
-      },
-      "oas-api-https-only": {
-          "description": "Ensures that all APIs are only using HTTPS protocol as a transport.",
-          "message": "You must only use HTTPS for the server transport protocol.",
-          "formats": [
-            "oas3"
+        "given": [
+            "$.servers[*].url"
           ],
-          "severity": "error",
-          "given": [
-              "$.servers[*].url"
-            ],
-          "then": {
-            "function": "pattern",
-            "functionOptions": {
-              "match": "/^https://"
-            }
-          }
-      },
-      "oas-api-paths-no-query-params": {
-        "given": [
-          "$.paths"
-        ],
-        "severity": "error",
         "then": {
           "function": "pattern",
           "functionOptions": {
-            "notMatch": "\\?"
-          },
-          "field": "@key"
+            "match": "/^https://"
+          }
+        }
+    },
+    "oas-api-paths-no-query-params": {
+      "given": [
+        "$.paths"
+      ],
+      "severity": "error",
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "\\?"
         },
-        "message": "Path must not include query string"
+        "field": "@key"
       },
-      "oas-api-operations-tags": {
-          "description": "Ensures that each of the operations have a tags property.",
-          "message": "All of your operations need to have tags.",
-          "severity": "error",
-          "given": "$.paths.*[get,post,patch,put,delete]",
-          "then": [
-            {
-              "field": "tags",
-              "function": "truthy"
-            }
-          ]
-      },
-      "oas-api-parameters-description": {
-          "description": "Ensures that that all parameters have a descriptions.",
-          "message": "Your parameters all need descriptions.",
-          "given": "$.paths.*.*.parameters[?(@.in=='header')]",
-          "severity": "warn",
-          "then": {
-            "field": "description",
+      "message": "Path must not include query string"
+    },
+    "oas-api-operations-tags": {
+        "description": "Ensures that each of the operations have a tags property.",
+        "message": "All of your operations need to have tags.",
+        "severity": "error",
+        "given": "$.paths.*[get,post,patch,put,delete]",
+        "then": [
+          {
+            "field": "tags",
             "function": "truthy"
           }
-        },
-        "oas-api-security-scheme-missing": {
-          "description": "Requires the security scheme.",
-          "message": "Must define a  security scheme",
-          "recommended": true,
-          "given": "$",
-          "severity": "error",
-          "then":[ {
-                "field": "components.securitySchemes.bearerAuth",
-                "function": "truthy"
-              }
-          ]
-        },
-        "oas-api-security-scheme-bearer": {
-          "description": "Requires the usage of Authorization header for security scheme.",
-          "message": "Must add bearer token in the Authorization header for security scheme.",
-          "given": "$.components.securitySchemes.bearerAuth",
-          "severity": "error",
-          "then": [
-            {
-              "field": "type",
-              "function": "pattern",
-              "functionOptions": {
-                "match": "^http"
-              }
-            },
-            {
-              "field": "scheme",
-              "function": "pattern",
-              "functionOptions": {
-                "match": "^bearer"
-              }
-            },
-            {
-              "field": "bearerFormat",
-              "function": "pattern",
-              "functionOptions": {
-                "match": "^JWT|^jwt"
-              }
+        ]
+    },
+    "oas-api-parameters-description": {
+        "description": "Ensures that that all parameters have a descriptions.",
+        "message": "Your parameters all need descriptions.",
+        "given": "$.paths.*.*.parameters[?(@.in=='header')]",
+        "severity": "warn",
+        "then": {
+          "field": "description",
+          "function": "truthy"
+        }
+      },
+    "oas-api-security-scheme-missing": {
+        "description": "Requires the security scheme.",
+        "message": "Must define a  security scheme",
+        "recommended": true,
+        "given": "$",
+        "severity": "error",
+        "then":[ {
+              "field": "components.securitySchemes.bearerAuth",
+              "function": "truthy"
             }
-          ]
-      }
+        ]
+      },
+    "oas-api-security-scheme-bearer": {
+        "description": "Requires the usage of Authorization header for security scheme.",
+        "message": "Must add bearer token in the Authorization header for security scheme.",
+        "given": "$.components.securitySchemes.bearerAuth",
+        "severity": "error",
+        "then": [
+          {
+            "field": "type",
+            "function": "pattern",
+            "functionOptions": {
+              "match": "^http"
+            }
+          },
+          {
+            "field": "scheme",
+            "function": "pattern",
+            "functionOptions": {
+              "match": "^bearer"
+            }
+          },
+          {
+            "field": "bearerFormat",
+            "function": "pattern",
+            "functionOptions": {
+              "match": "^JWT|^jwt"
+            }
+          }
+        ]
+    },
+    "tdp-api-server-url-invalid": {
+        "description": "API URLs should meet the Trimble API Standards",
+        "message": "{{error}}",
+        "given": "$.servers",
+        "severity": "warn",
+        "then": {
+            "function": "valid-url-checker"
+        }
+    },
+    "tdp-api-server-url-version-invalid": {
+        "description": "API URLs versions should meet the Trimble API Standards",
+        "message": "{{error}}",
+        "given": "$.servers",
+        "severity": "warn",
+        "then": {
+            "function": "valid-version-checker"
+        }
+    },
+    "tdp-api-paths-should-start-with-a-noun": {
+        "description": "API paths should start with a noun",
+        "message": "{{error}}",
+        "given": "$.paths",
+        "severity": "error",
+        "then": {
+            "field": "@key",
+            "function": "is-a-plural-noun"
+        }
+    },
+    "openapi-v3-schema-properties-names-camel-case": {
+        "description": "Ensuring that schema property names are camel case.",
+        "message": "All schema property names should be camel case.",
+        "severity": "error",
+        "given": "$..properties..",
+        "then": {
+            "field": "@key",
+            "function": "pattern",
+            "functionOptions": {
+                "match": "^[a-z][a-zA-Z0-9]*$"
+            },
+            "errorMessage": "All field names MUST be formatted as camel case."
+        }
+    },
+    "no-http-verbs-in-path": {
+        "description": "HTTP verbs should be not be in URL paths",
+        "message": "{{property}} has HTTP verb in path: {{error}}",
+        "recommended": true,
+        "type": "style",
+        "given": "$.paths",
+        "then": {
+            "field": "@key",
+            "function": "no-http-verbs-in-path"
+        }
+    },
+    "structured-data-format": {
+        "description": "All APIs returning structured data should support JSON as the default format.",
+        "severity": "error",
+        "message": "{{error}}",
+        "given": "$.paths.*.",
+        "then": {
+            "function": "check-if-application-or-json-in-put-and-post-response"
+        }
+    },
+    "structured-data-format-support-json-response-body": {
+        "description": "All APIs returning structured data should support JSON as the default format.",
+        "severity": "error",
+        "message": "{{error}}",
+        "given": "$.paths.*.",
+        "then": {
+            "function": "check-if-response-body-json-in-get-response"
+        }
+    },
+    "http-response-code": {
+        "description": "All APIs should return a valid http response code.",
+        "severity": "warn",
+        "message": "{{error}}",
+        "given": "$..responses",
+        "then": {
+            "field": "@key",
+            "function": "valid-http-response"
+        }
+    },
+    "check-queryparameter-in-endpoint": {
+        "description": "Check if the given endpoint has queryparameter.",
+        "severity": "warn",
+        "message": "{{error}}",
+        "given": "$.paths",
+        "then": {
+            "field": "@key",
+            "function": "check-for-query-parameter-in-every-path"
+        }
+    },
+    "is-spec-contains-valid-http-verbs": {
+        "description": "I am currently testing my linting work.",
+        "severity": "warn",
+        "message": "{{error}}",
+        "given": "$.paths.*",
+        "then": {
+            "field": "@key",
+            "function": "does-spec-contains-valid-http-verbs"
+        }
+    },
+    "spec-should-not-be-empty": {
+        "description": "spec should not be empty.",
+        "severity": "error",
+        "message": "{{error}}",
+        "given": "$",
+        "then": {
+            "function": "is-valid-spec"
+        }
+    },
+    "tdp-tag-pascal-case": {
+        "severity": "warn",
+        "recommended": true,
+        "message": "Tag names cannot use Pascal Case. Please rename {{value}}.",
+        "given": [
+            "$.tags[*].name",
+            "$.paths[*][*].tags[*]"
+        ],
+        "then": {
+            "function": "pattern",
+            "functionOptions": {
+                "notMatch": "/[A-Z][a-z]+[A-Z][a-z]+$/g"
+            }
+        }
+    },
+    "tdp-tag-camel-case": {
+        "description": "Detects a tag with camelCase (personalItem) text within it",
+        "severity": "warn",
+        "recommended": true,
+        "message": "Tag names cannot use Camel Case. Please rename {{value}}.",
+        "given": [
+            "$.tags[*].name",
+            "$.paths[*][*].tags[*]"
+        ],
+        "then": {
+            "function": "pattern",
+            "functionOptions": {
+                "notMatch": "/^[a-z]+[A-Z][a-z]+$/g"
+            }
+        }
+    },
+    "tdp-tag-no-versions": {
+        "severity": "warn",
+        "recommended": true,
+        "message": "Tag names cannot have version information {{value}}. Consider versioning your API.",
+        "given": [
+            "$.tags[*].name",
+            "$.paths[*][*].tags[*]"
+        ],
+        "then": {
+            "function": "pattern",
+            "functionOptions": {
+                "notMatch": "/(V|v)\\s?[0-9]+/g"
+            }
+        }
+    },
+    "tdp-minimum-spec-version": {
+        "description": "The spec version should be 3 or greater.",
+        "severity": "warn",
+        "formats": [
+            "oas2"
+        ],
+        "given": [
+            "$"
+        ],
+        "then": {
+            "field": "string",
+            "function": "truthy"
+        }
+    },
+    "tdp-operation-summary-description": {
+        "description": "Operation summaries and description should not match",
+        "message": "{{error}}",
+        "severity": "warn",
+        "formats": [
+            "oas3"
+        ],
+        "given": [
+            "$.paths[*].[get,post,put,patch,delete]"
+        ],
+        "then": {
+            "function": "operation-summary-description"
+        }
+    },
+    "tdp-operation-delete-204-status-code": {
+        "description": "All DELETE methods should have a 204 response.",
+        "severity": "error",
+        "recommended": true,
+        "formats": [
+            "oas3"
+        ],
+        "given": [
+            "$.paths[*].delete.responses"
+        ],
+        "then": {
+            "field": "204",
+            "function": "truthy"
+        }
+    },
+    "tdp-operation-post-201-status-code": {
+        "description": "All POST methods should have a 201 or 202 response.",
+        "severity": "error",
+        "recommended": true,
+        "formats": [
+            "oas3"
+        ],
+        "given": [
+            "$.paths[*].post.responses"
+        ],
+        "then": [
+            {
+                "field": "201",
+                "function": "truthy"
+            }
+        ]
+    },
+    "tdp-operation-400-response-body": {
+        "description": "All 400 responses must include a response body.",
+        "severity": "error",
+        "recommended": true,
+        "formats": [
+            "oas3"
+        ],
+        "given": [
+            "$.paths.*.*.responses['400']"
+        ],
+        "then": {
+            "field": "content",
+            "function": "truthy"
+        }
     }
   }
+}
