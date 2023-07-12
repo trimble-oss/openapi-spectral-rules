@@ -49,4 +49,4 @@ Where
 
 ### openapi-style-guide.md
 
-When adding a new rule, please add a section to the style guide that describes the rule. The section should should be match the rule name in the `spectral.yaml` file. For example, if the rule name is `tdp-tag-pascal-case` then the section should be `### tdp-tag-pascal-case`.
+When adding a new rule, please add a section to the style guide that describes the rule. The section heading should match the rule name in the `spectral.yaml` file. For example, if the rule name is `tdp-tag-pascal-case` then the section should be `### tdp-tag-pascal-case`.
