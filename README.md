@@ -1,6 +1,6 @@
 # Trimble OpenAPI Spectral rules
 
-This repository contains Spectral rules for linting Trimble OpenAPI specification documents. These rules are a companion to the Trimble Web API Standards.
+This repository contains Spectral rules for linting Trimble OpenAPI specification documents. These rules are a companion to the Trimble Web API Standard.
 
 ## How to use the Spectral ruleset
 
