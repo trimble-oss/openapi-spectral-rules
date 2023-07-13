@@ -1,4 +1,4 @@
-# Contributing to the Trimble OpenAPI Style Guide
+# Contributing to the Trimble OpenAPI Spectral Rules
 
 If you would like to contribute to this project please read the [contributing guidelines](https://trimble-oss.github.io/contribute/guidelines/).
 
@@ -34,7 +34,7 @@ When creating new rules we have some conventions that should be followed. For ru
 | ------- | ---------------------------------------------------------------------------------- |
 | name    | prefixes:                                                                          |
 |         | "`tdp-`" Trimble Developer Program                                                 |
-|         | "`tas-`" Trimble API Standards                                                     |
+|         | "`tas-`/`tapi`" Trimble API Standards                                              |
 | formats | You can add formats, however, tdp has a warning rule on oas formats lower than 3.0 |
 
 Rule name convention, not really strict about this, but it should be something like:
