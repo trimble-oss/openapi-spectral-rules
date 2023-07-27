@@ -7,7 +7,8 @@
     "example": "examples"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "update-toc": "markdown-toc -i openapi-style-guide.md"
   },
   "repository": {
     "type": "git",
@@ -30,5 +31,8 @@
     "@stoplight/spectral-ruleset-migrator": "^1.9.1",
     "@stoplight/spectral-rulesets": "^1.14.1",
     "jest": "^29.4.0"
+  },
+  "dependencies": {
+    "markdown-toc": "^1.2.0"
   }
 }
