@@ -30,14 +30,10 @@
     "@stoplight/spectral-functions": "^1.7.2",
     "@stoplight/spectral-ruleset-migrator": "^1.9.1",
     "@stoplight/spectral-rulesets": "^1.14.1",
-<<<<<<< HEAD
     "jest": "^29.4.0",
     "pos": "^0.4.2"
-=======
-    "jest": "^29.4.0"
   },
   "dependencies": {
     "markdown-toc": "^1.2.0"
->>>>>>> 327b900 (Adding contribution guidelines)
   }
 }
