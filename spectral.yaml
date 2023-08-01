@@ -1,8 +1,7 @@
----
 extends:
   - [spectral:oas, all]
 functionsDir: "./functions"
-functions: 
+functions:
   - valid-url-checker
   - valid-version-checker
   - is-a-plural-noun
@@ -39,8 +38,8 @@ rules:
     then:
       function: valid-version-checker
 
-  # Resource names in the URL must be a noun 
-  # https://api-standards.trimble-pnp.com/api-standard/http#resource-naming 
+  # Resource names in the URL must be a noun
+  # https://api-standards.trimble-pnp.com/api-standard/http#resource-naming
   tas-api-paths-should-start-with-a-noun:
     description: The root resource name in the URL MUST be a noun and MUST be in the plural form. Further nouns MAY be in the singular.
     message: "{{error}}"
@@ -51,7 +50,7 @@ rules:
       function: is-a-plural-noun
 
   # All schema property names should be camel case.
-  # https://api-standards.trimble-pnp.com/api-standard/http#field-names 
+  # https://api-standards.trimble-pnp.com/api-standard/http#field-names
   tas-openapi-v3-schema-properties-names-camel-case:
     description: Ensuring that schema property names are camel case.
     message: All schema property names should be camel case.
@@ -61,9 +60,9 @@ rules:
       field: "@key"
       function: pattern
       functionOptions:
-        match:  "^[a-z][a-zA-Z0-9]*$"
+        match: "^[a-z][a-zA-Z0-9]*$"
       errorMessage: All field names MUST be formatted as camel case.
-      
+
   # Resource path should not contain HTTP verbs
   # https://api-standards.trimble-pnp.com/api-standard/http#avoiding-actions-in-resource-names
   tas-no-http-verbs-in-path:
@@ -77,7 +76,7 @@ rules:
       function: no-http-verbs-in-path
 
   # All APIs returning structured data should support JSON as the default format
-  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts    
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts
   tas-structured-data-format:
     description: All APIs returning structured data should support JSON as the default format.
     severity: error
@@ -87,7 +86,7 @@ rules:
       function: check-if-application-or-json-in-put-and-post-response
 
   # All APIs returning structured data should support JSON as the default format.
-  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts 
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts
   tas-structured-data-format-support-json-response-body:
     description: All APIs returning structured data should support JSON as the default format.
     severity: error
@@ -95,7 +94,7 @@ rules:
     given: "$.paths.*."
     then:
       function: check-if-response-body-json-in-get-response
-  
+
   # All APIs should return a valid http response code (Additional ruleset)
   tdp-http-response-code:
     description: All APIs should return a valid http response code.
@@ -117,7 +116,7 @@ rules:
       field: "@key"
       function: check-for-query-parameter-in-every-path
 
- # Spec should contain only valid http verbs (Additional ruleset)
+  # Spec should contain only valid http verbs (Additional ruleset)
   tdp-does-spec-contains-valid-http-verbs:
     description: All APIs should have a valid http verb.
     severity: warn
@@ -132,7 +131,7 @@ rules:
     description: Spec should not be empty.
     severity: error
     message: "{{error}}"
-    given: '$'
+    given: "$"
     then:
       function: is-valid-spec
 
