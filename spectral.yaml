@@ -52,7 +52,7 @@ rules:
     description: Ensuring that schema property names are camel case.
     message: All schema property names should be camel case.
     severity: error
-    given: "$..properties.."
+    given: "$..properties."
     then:
       field: "@key"
       function: pattern
@@ -305,7 +305,7 @@ rules:
     description: Check if every request has their respective responses.
     severity: error
     message: "{{error}}"
-    given: "$.paths.*.*."
+    given: "$.paths.*"
     then:
       function: check-for-response-in-every-request
 

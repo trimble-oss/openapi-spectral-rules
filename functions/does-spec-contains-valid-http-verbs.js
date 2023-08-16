@@ -1,6 +1,6 @@
 module.exports = (input) => {
 
-    const httpVerbs = ['get', 'post', 'put', 'delete', 'patch', 'trace', 'options', 'head', 'connect'];
+    const httpVerbs = ['get', 'post', 'put', 'delete', 'patch', 'trace', 'options', 'head', 'connect', 'parameters'];
 
     if (!httpVerbs.includes(input.toLowerCase())) {
         return [{
