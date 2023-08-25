@@ -4,38 +4,40 @@
 
 <!-- toc -->
 
-- [OAS Rules](#oas-rules)
-  * [no-$ref-siblings](#no-ref-siblings)
-- [Trimble HTTP API Standard](#trimble-http-api-standard)
-  * [tas-api-server-url-invalid](#tas-api-server-url-invalid)
-  * [tas-api-server-url-version-invalid](#tas-api-server-url-version-invalid)
-  * [tas-openapi-v3-schema-properties-names-camel-case](#tas-openapi-v3-schema-properties-names-camel-case)
-  * [tas-no-http-verbs-in-path](#tas-no-http-verbs-in-path)
-  * [tas-structured-data-format](#tas-structured-data-format)
-  * [tas-structured-data-format-support-json-response-body](#tas-structured-data-format-support-json-response-body)
-  * [tas-check-queryparameter-in-endpoint](#tas-check-queryparameter-in-endpoint)
-  * [tas-operation-delete-204-status-code](#tas-operation-delete-204-status-code)
-  * [tas-operation-400-response-body](#tas-operation-400-response-body)
-  * [tas-check-content-type-for-206-get-response-code](#tas-check-content-type-for-206-get-response-code)
-  * [tas-standard-error-payload](#tas-standard-error-payload)
-  * [tas-check-description-for-all-error-responses](#tas-check-description-for-all-error-responses)
-  * [tas-check-description-for-all-success-responses](#tas-check-description-for-all-success-responses)
-  * [tas-check-for-content-type-in-put-and-post-responses](#tas-check-for-content-type-in-put-and-post-responses)
-  * [tas-delete-must-not-return-body](#tas-delete-must-not-return-body)
-- [Trimble Developer Program](#trimble-developer-program)
-  * [tdp-minimum-spec-version](#tdp-minimum-spec-version)
-  * [tdp-tag-pascal-case](#tdp-tag-pascal-case)
-  * [tdp-tag-camel-case](#tdp-tag-camel-case)
-  * [tdp-tag-no-versions](#tdp-tag-no-versions)
-  * [tdp-operation-summary-description](#tdp-operation-summary-description)
-  * [tdp-operation-post-201-202-status-code](#tdp-operation-post-201-202-status-code)
-  * [tdp-operation-400-response-body](#tdp-operation-400-response-body)
-  * [tdp-http-response-code](#tdp-http-response-code)
-  * [tdp-does-spec-contains-valid-http-verbs:](#tdp-does-spec-contains-valid-http-verbs)
-  * [tdp-spec-should-not-be-empty](#tdp-spec-should-not-be-empty)
-  * [tdp-check-for-path-parameters-in-parameter-block](#tdp-check-for-path-parameters-in-parameter-block)
-  * [tdp-check-for-response-in-every-request](#tdp-check-for-response-in-every-request)
-  * [tdp-invalid-symbol-in-path](#tdp-invalid-symbol-in-path)
+- [OpenAPI Style Guidelines](#openapi-style-guidelines)
+  - [Table of Contents](#table-of-contents)
+  - [OAS Rules](#oas-rules)
+    - [no-$ref-siblings](#no-ref-siblings)
+  - [Trimble HTTP API Standard](#trimble-http-api-standard)
+    - [tas-api-server-url-invalid](#tas-api-server-url-invalid)
+    - [tas-api-server-url-version-invalid](#tas-api-server-url-version-invalid)
+    - [tas-openapi-v3-schema-properties-names-camel-case](#tas-openapi-v3-schema-properties-names-camel-case)
+    - [tas-no-http-verbs-in-path](#tas-no-http-verbs-in-path)
+    - [tas-structured-data-format](#tas-structured-data-format)
+    - [tas-structured-data-format-support-json-response-body](#tas-structured-data-format-support-json-response-body)
+    - [tas-check-queryparameter-in-endpoint](#tas-check-queryparameter-in-endpoint)
+    - [tas-operation-delete-204-status-code](#tas-operation-delete-204-status-code)
+    - [tas-operation-400-response-body](#tas-operation-400-response-body)
+    - [tas-check-content-type-for-206-get-response-code](#tas-check-content-type-for-206-get-response-code)
+    - [tas-standard-error-payload](#tas-standard-error-payload)
+    - [tas-check-description-for-all-error-responses](#tas-check-description-for-all-error-responses)
+    - [tas-check-description-for-all-success-responses](#tas-check-description-for-all-success-responses)
+    - [tas-check-for-content-type-in-put-and-post-responses](#tas-check-for-content-type-in-put-and-post-responses)
+    - [tas-delete-must-not-return-body](#tas-delete-must-not-return-body)
+  - [Trimble Developer Program](#trimble-developer-program)
+    - [tdp-minimum-spec-version](#tdp-minimum-spec-version)
+    - [tdp-tag-pascal-case](#tdp-tag-pascal-case)
+    - [tdp-tag-camel-case](#tdp-tag-camel-case)
+    - [tdp-tag-no-versions](#tdp-tag-no-versions)
+    - [tdp-operation-summary-description](#tdp-operation-summary-description)
+    - [tdp-operation-post-201-202-status-code](#tdp-operation-post-201-202-status-code)
+    - [tdp-operation-400-response-body](#tdp-operation-400-response-body)
+    - [tdp-http-response-code](#tdp-http-response-code)
+    - [tdp-does-spec-contains-valid-http-verbs:](#tdp-does-spec-contains-valid-http-verbs)
+    - [tdp-spec-should-not-be-empty](#tdp-spec-should-not-be-empty)
+    - [tdp-check-for-path-parameters-in-parameter-block](#tdp-check-for-path-parameters-in-parameter-block)
+    - [tdp-check-for-response-in-every-request](#tdp-check-for-response-in-every-request)
+    - [tdp-invalid-symbol-in-path](#tdp-invalid-symbol-in-path)
 
 <!-- tocstop -->
 
@@ -107,7 +109,7 @@ https://api-standards.trimble-pnp.com/api-standard/http#client-error-responses-4
 
 ### tas-check-content-type-for-206-get-response-code
 
-Check if the get response code 206 has content-type and content-range
+Check if the GET response code 206 has content-type and content-range
 
 https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
 

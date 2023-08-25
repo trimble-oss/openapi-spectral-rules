@@ -28,7 +28,7 @@ spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-
 
 #### Develop Branch
 
-Recently we have implemented a `develop` branch to allow for more broad testing. Any changes and additions will be pushed to the develop branch to allow for testing, validation and teams make changes before deploying new rule changes to the `main` branch. Access the `develop` ruleset at the following url:
+Recently we have implemented a `develop` branch to allow for more broad testing. Any changes and additions will be pushed to the develop branch to allow for testing, validation and for teams to make changes before deploying new rule changes to the `main` branch. Access the `develop` ruleset at the following url:
 
 `https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/develop/spectral.yaml`
 
