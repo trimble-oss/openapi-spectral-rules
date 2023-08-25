@@ -18,46 +18,36 @@ npm install -g @stoplight/spectral-cli
 
 ### Usage
 
+#### Production ruleset
+
 You can specify the ruleset directly on the command line:
 
 ```bash
 spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml <api definition file>
 ```
 
-Or you can create a Spectral configuration file (`.spectral.yaml`) that references the ruleset:
+#### Develop Branch
+
+Recently we have implemented a `develop` branch to allow for more broad testing. Any changes and additions will be pushed to the develop branch to allow for testing, validation and for teams to make changes before deploying new rule changes to the `main` branch. Access the `develop` ruleset at the following url:
+
+`https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/develop/spectral.yaml`
+
+Example use in the command line:
+
+```bash
+spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/develop/spectral.yaml <api definition file>
+```
+
+#### Extend the ruleset
+
+You can create a Spectral configuration file (`.spectral.yaml`) that references the ruleset:
 
 ```yaml
 extends:
   - https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml
 ```
 
-### Example
-
-Lint and output the results to an html file:
-
-```bash
-spectral lint ./openapi.yaml \
-    --ruleset https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml \
-    --format html > ./results.html
-
-```
-
-Lint the test spec locally
-
-```bash
-spectral lint ./examples/v3.0/petstore.yaml \
-    --ruleset ./spectral.yaml \
-    --format html > ./results.html
-
-spectral lint ./examples/v3.0/petstore.yaml --ruleset ./spectral.yaml
-
-
-
-spectral lint ./examples/v3.0/petstore.yaml \
-    --ruleset ./spectral-owasp.yaml
-
-
-```
+In this way you can create a custom ruleset that extends the Trimble ruleset.
 
 ## Trimble Rules
 
