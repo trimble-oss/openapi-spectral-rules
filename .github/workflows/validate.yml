@@ -18,4 +18,5 @@ jobs:
       - uses: stoplightio/spectral-action@latest
         with:
           file_glob: "examples/**/*.yaml"
-          spectral_ruleset: "https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml"
+          spectral_ruleset: "./spectral.yaml"
+          
