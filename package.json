@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "This repository contains Spectral rules for linting Trimble OpenAPI specification documents. These rules are a companion to the Trimble Web API Standards.",
   "main": "spectral.js",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "directories": {
     "example": "examples"
   },
