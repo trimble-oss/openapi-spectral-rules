@@ -260,13 +260,13 @@ rules:
 
   # Check for description for all error responses
   # https://api-standards.trimble-pnp.com/api-standard/http#client-error-responses-4xx
-  tas-check-description-for-all-error-responses:
-    description: Check if the response description is appropriate for all requests.
-    severity: warn
-    message: "{{error}}"
-    given: "$.paths.*.*.responses."
-    then:
-      function: check-description-for-all-error-responses
+  # tas-check-description-for-all-error-responses:
+  #   description: Check if the response description is appropriate for all requests.
+  #   severity: warn
+  #   message: "{{error}}"
+  #   given: "$.paths.*.*.responses."
+  #   then:
+  #     function: check-description-for-all-error-responses
 
   # Check for description for all success responses
   # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx

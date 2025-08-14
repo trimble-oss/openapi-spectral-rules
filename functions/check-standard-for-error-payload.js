@@ -156,6 +156,6 @@ module.exports = (input) => {
     }
   }
   
-  // Return null if all validations pass
-  return null;
+  // Return undefined if all validations pass
+  return undefined;
 };
