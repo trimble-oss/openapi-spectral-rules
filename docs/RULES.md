@@ -168,7 +168,7 @@ Descriptions should be longer than summaries.
 
 ### tdp-operation-post-201-202-status-code
 
-All POST methods should have a 201 or 202 response.
+All POST methods MUST have a 201 or 202 response.
 
 https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
 
