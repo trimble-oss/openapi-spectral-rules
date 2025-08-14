@@ -67,7 +67,7 @@ https://api-standards.trimble-pnp.com/api-standard/http#url-versioning
 
 ### tas-openapi-v3-schema-properties-names-camel-case
 
-All schema property names should be camel case.
+All schema property names MUST be camel case.
 
 https://api-standards.trimble-pnp.com/api-standard/http#field-names
 

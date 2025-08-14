@@ -50,7 +50,7 @@ rules:
   # https://api-standards.trimble-pnp.com/api-standard/http#field-names 
   tas-openapi-v3-schema-properties-names-camel-case:
     description: Ensuring that schema property names are camel case.
-    message: All schema property names should be camel case.
+    message: All schema property names MUST be camel case.
     severity: error
     given: "$..properties."
     then:
