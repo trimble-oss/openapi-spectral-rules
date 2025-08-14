@@ -18,7 +18,12 @@ module.exports = (input) => {
     const httpVerbs = Object.keys(json[key]);
     if (pathParameters[index].length !== 0) {
       for (const verb of httpVerbs) {
-        if (!json[key][verb].parameters) {
+        // Get parameters from both path level and operation level
+        const pathLevelParameters = json[key].parameters || [];
+        const operationLevelParameters = json[key][verb].parameters || [];
+        const allParameters = [...pathLevelParameters, ...operationLevelParameters];
+
+        if (allParameters.length === 0) {
           return [
             {
               message:
@@ -26,30 +31,7 @@ module.exports = (input) => {
             },
           ];
         } else {
-          const parameters = json[key][verb].parameters;
-
-          const hasPathParameter = parameters.some((param) => {
-            if (param.in.toLowerCase() === "header") {
-              return true;
-            }
-            return (
-              param.in.toLowerCase() === "path" &&
-              !param.name.toLowerCase().includes(parameters[index])
-            );
-          });
-          if (!hasPathParameter) {
-            return [
-              {
-                message:
-                  "The path does not contains 'path' value in 'in' field of " +
-                  key +
-                  " - " +
-                  verb +
-                  " parameters block.",
-              },
-            ];
-          }
-
+          // Check for duplicate path parameters
           if (
             pathParameters[index].length !== new Set(pathParameters[index]).size
           ) {
@@ -60,20 +42,24 @@ module.exports = (input) => {
             ];
           }
 
+          // Check each path parameter
           for (var word in pathParameters[index]) {
-            const hasNameParameter = parameters.some((param) => {
+            const pathParamName = pathParameters[index][word];
+            
+            // Check if the parameter with this name is actually a path parameter
+            const hasPathParameter = allParameters.some((param) => {
               return (
-                param.in.toLowerCase() === "path" &&
-                param.name.toLowerCase() === pathParameters[index][word]
+                param.name.toLowerCase() === pathParamName &&
+                param.in.toLowerCase() === "path"
               );
             });
 
-            if (!hasNameParameter) {
+            if (!hasPathParameter) {
               return [
                 {
                   message:
                     "The  path parameter '" +
-                    pathParameters[index][word] +
+                    pathParamName +
                     "' was not mentioned in the 'name' field of parameters block for '" +
                     verb +
                     "' request.",
@@ -85,9 +71,13 @@ module.exports = (input) => {
       }
     } else {
       for (const verb of httpVerbs) {
-        if (json[key][verb].parameters) {
-          const parameters = json[key][verb].parameters;
-          const hasPathParameter = parameters.some((param) => {
+        // Get parameters from both path level and operation level
+        const pathLevelParameters = json[key].parameters || [];
+        const operationLevelParameters = json[key][verb].parameters || [];
+        const allParameters = [...pathLevelParameters, ...operationLevelParameters];
+
+        if (allParameters.length > 0) {
+          const hasPathParameter = allParameters.some((param) => {
             return param.in === "path";
           });
           if (hasPathParameter) {
