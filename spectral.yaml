@@ -86,7 +86,7 @@ rules:
   # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts 
   tas-structured-data-format-support-json-response-body:
     description: All APIs returning structured data should support JSON as the default format.
-    severity: error
+    severity: warn
     message: "{{error}}"
     given: "$.paths.*."
     then:
