@@ -97,7 +97,7 @@ https://api-standards.trimble-pnp.com/api-standard/http#url-parameters
 
 ### tas-operation-delete-204-status-code
 
-All DELETE methods should have a 204 response
+All DELETE methods MUST have a 204 response
 
 https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
 

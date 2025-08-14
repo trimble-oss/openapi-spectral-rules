@@ -200,7 +200,7 @@ rules:
   # All DELETE methods should have a 204 response
   # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
   tas-operation-delete-204-status-code:
-    description: All DELETE methods should have a 204 response.
+    description: All DELETE methods MUST have a 204 response.
     severity: error
     recommended: true
     formats:
