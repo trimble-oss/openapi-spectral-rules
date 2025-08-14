@@ -253,7 +253,7 @@ rules:
   tas-standard-error-payload:
     description: All 4XX and 5XX response codes must follow Trimble API Standard.
     severity: error
-    given: "$..responses" 
+    given: "$.paths.*.*.responses." 
     message: "{{error}}"
     then :
       function: check-standard-for-error-payload

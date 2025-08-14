@@ -9,6 +9,7 @@ beforeAll(async () => {
 
 test("standard-error-payload should return error message since the responses does not have structured data", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -30,13 +31,14 @@ test("standard-error-payload should return error message since the responses doe
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "All api should return structured data format"
+      "All API error responses should return structured data in application/json format"
     );
   });
 });
 
 test("standard-error-payload should return error message since the content block is missing", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -60,6 +62,7 @@ test("standard-error-payload should return error message since the content block
 
 test("standard-error-payload should return error message since the schema block is missing", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -79,13 +82,45 @@ test("standard-error-payload should return error message since the schema block 
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "Schema section is missing in the response body"
+      "Schema section is missing in the error response body"
+    );
+  });
+});
+
+test("standard-error-payload should return error message since schema is not an object", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            401: {
+              description: "Unauthorized",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "string",
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].message).toBe(
+      "Error response schema must be of type 'object'"
     );
   });
 });
 
 test("standard-error-payload should return error message since the properties block is missing", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -94,7 +129,9 @@ test("standard-error-payload should return error message since the properties bl
               description: "Unauthorized",
               content: {
                 "application/json": {
-                  schema: {},
+                  schema: {
+                    type: "object",
+                  },
                 },
               },
             },
@@ -107,13 +144,14 @@ test("standard-error-payload should return error message since the properties bl
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "Properties section is missing in the response body"
+      "Properties section is missing in the error response schema"
     );
   });
 });
 
 test("standard-error-payload should return error message since the title is missing in error payload", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -123,7 +161,13 @@ test("standard-error-payload should return error message since the title is miss
               content: {
                 "application/json": {
                   schema: {
-                    properties: {},
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
+                    },
                   },
                 },
               },
@@ -137,13 +181,14 @@ test("standard-error-payload should return error message since the title is miss
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "The error payload must contain title property"
+      "The error payload must contain 'title' property"
     );
   });
 });
 
-test("standard-error-payload should return error message since the message is missing in error payload", () => {
+test("standard-error-payload should return error message since the type is missing in error payload", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -153,6 +198,7 @@ test("standard-error-payload should return error message since the message is mi
               content: {
                 "application/json": {
                   schema: {
+                    type: "object",
                     properties: {
                       title: {
                         type: "string",
@@ -171,13 +217,14 @@ test("standard-error-payload should return error message since the message is mi
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "The error payload must contain message property"
+      "The error payload must contain 'type' property"
     );
   });
 });
 
-test("standard-error-payload should return error message since the title is links in error payload", () => {
+test("standard-error-payload should return error message since type property is not a string", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -187,11 +234,12 @@ test("standard-error-payload should return error message since the title is link
               content: {
                 "application/json": {
                   schema: {
+                    type: "object",
                     properties: {
-                      title: {
-                        type: "string",
+                      type: {
+                        type: "number",
                       },
-                      message: {
+                      title: {
                         type: "string",
                       },
                     },
@@ -208,13 +256,14 @@ test("standard-error-payload should return error message since the title is link
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "The error payload must contain links property"
+      "The 'type' property must be of type 'string'"
     );
   });
 });
 
-test("standard-error-payload should return error message since the title is requestId in error payload", () => {
+test("standard-error-payload should return error message since title property is not a string", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -224,14 +273,53 @@ test("standard-error-payload should return error message since the title is requ
               content: {
                 "application/json": {
                   schema: {
+                    type: "object",
                     properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
                       title: {
-                        type: "string",
+                        type: "number",
                       },
-                      message: {
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].message).toBe(
+      "The 'title' property must be of type 'string'"
+    );
+  });
+});
+
+test("standard-error-payload should return error message since type property format is not uri", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            401: {
+              description: "Unauthorized",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      type: {
                         type: "string",
+                        format: "email",
                       },
-                      links: {
+                      title: {
                         type: "string",
                       },
                     },
@@ -248,13 +336,14 @@ test("standard-error-payload should return error message since the title is requ
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "The error payload must contain requestId property"
+      "The 'type' property format must be 'uri'"
     );
   });
 });
 
-test("standard-error-payload should return error message since the title is missing in lang payload", () => {
+test("standard-error-payload should return error message since status property is not a number", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -264,17 +353,16 @@ test("standard-error-payload should return error message since the title is miss
               content: {
                 "application/json": {
                   schema: {
+                    type: "object",
                     properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
                       title: {
                         type: "string",
                       },
-                      message: {
-                        type: "string",
-                      },
-                      links: {
-                        type: "string",
-                      },
-                      requestId: {
+                      status: {
                         type: "string",
                       },
                     },
@@ -291,13 +379,14 @@ test("standard-error-payload should return error message since the title is miss
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "The error payload must contain lang property"
+      "The 'status' property must be of type 'number'"
     );
   });
 });
 
-test("standard-error-payload should return null since the standard error payload is provided", () => {
+test("standard-error-payload should return error message since instance property is not a string", () => {
   const oasDoc = {
+    openapi: "3.0.0",
     paths: {
       "/apis": {
         get: {
@@ -307,23 +396,217 @@ test("standard-error-payload should return null since the standard error payload
               content: {
                 "application/json": {
                   schema: {
+                    type: "object",
                     properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
                       title: {
                         type: "string",
                       },
-                      message: {
+                      instance: {
+                        type: "number",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].message).toBe(
+      "The 'instance' property must be of type 'string'"
+    );
+  });
+});
+
+test("standard-error-payload should return error message since instance property format is not uri", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            401: {
+              description: "Unauthorized",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
+                      title: {
                         type: "string",
                       },
-                      links: {
+                      instance: {
+                        type: "string",
+                        format: "email",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].message).toBe(
+      "The 'instance' property format must be 'uri'"
+    );
+  });
+});
+
+test("standard-error-payload should return error message since detail property is not a string", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            401: {
+              description: "Unauthorized",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
+                      title: {
                         type: "string",
                       },
-                      requestId: {
+                      detail: {
+                        type: "number",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].message).toBe(
+      "The 'detail' property must be of type 'string'"
+    );
+  });
+});
+
+test("standard-error-payload should return error message since errors property is not an array", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            401: {
+              description: "Unauthorized",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
+                      title: {
                         type: "string",
                       },
-                      lang: {
+                      errors: {
                         type: "string",
                       },
                     },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].message).toBe(
+      "The 'errors' property must be of type 'array'"
+    );
+  });
+});
+
+test("standard-error-payload should return null since the RFC7807-compliant error payload is provided", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            401: {
+              description: "Unauthorized",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "object",
+                    properties: {
+                      type: {
+                        type: "string",
+                        format: "uri",
+                      },
+                      title: {
+                        type: "string",
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(0);
+  });
+});
+
+test("standard-error-payload should return null for non-error status codes", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/apis": {
+        get: {
+          responses: {
+            200: {
+              description: "Success",
+              content: {
+                "application/json": {
+                  schema: {
+                    type: "string",
                   },
                 },
               },
