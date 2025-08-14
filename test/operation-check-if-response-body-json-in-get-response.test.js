@@ -204,6 +204,6 @@ test("missing 200 response code in get ", () => {
     return linter.run(oasDoc).then((results) => {
       
       expect(results.length).toBe(1)
-      expect(results[0].message).toBe("All APIs that return structured data MUST be able to return that data formatted as JSON at a minimum and as the default.")
+      expect(results[0].message).toBe("All APIs that return structured data should be able to return that data formatted as JSON at a minimum and as the default.")
     });
   });

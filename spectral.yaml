@@ -75,7 +75,7 @@ rules:
   # All APIs returning structured data should support JSON as the default format
   # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts    
   tas-structured-data-format:
-    description: All APIs returning structured data should support JSON as the default format.
+    description: All APIs returning structured data SHOULD support JSON as the default format.
     severity: error
     message: "{{error}}"
     given: "$.paths.*."
@@ -85,7 +85,7 @@ rules:
   # All APIs returning structured data should support JSON as the default format.
   # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts 
   tas-structured-data-format-support-json-response-body:
-    description: All APIs returning structured data should support JSON as the default format.
+    description: All APIs returning structured data SHOULD support JSON as the default format.
     severity: warn
     message: "{{error}}"
     given: "$.paths.*."
@@ -260,13 +260,13 @@ rules:
 
   # Check for description for all error responses
   # https://api-standards.trimble-pnp.com/api-standard/http#client-error-responses-4xx
-  # tas-check-description-for-all-error-responses:
-  #   description: Check if the response description is appropriate for all requests.
-  #   severity: warn
-  #   message: "{{error}}"
-  #   given: "$.paths.*.*.responses."
-  #   then:
-  #     function: check-description-for-all-error-responses
+  tas-check-description-for-all-error-responses:
+    description: Check if the response description is appropriate for all requests.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*.*.responses."
+    then:
+      function: check-description-for-all-error-responses
 
   # Check for description for all success responses
   # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx

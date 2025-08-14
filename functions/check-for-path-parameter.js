@@ -58,11 +58,8 @@ module.exports = (input) => {
               return [
                 {
                   message:
-                    "The  path parameter '" +
-                    pathParamName +
-                    "' was not mentioned in the 'name' field of parameters block for '" +
-                    verb +
-                    "' request.",
+                    `The path parameter '${pathParamName}' was not mentioned in the 'name' field of parameters block for '${verb}' request.`,
+
                 },
               ];
             }

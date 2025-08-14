@@ -32,6 +32,9 @@ test("check-description-for-all-error-responses should return null since all the
                 },
                 "409": {
                   "description": "Conflict"
+                },
+                "504": {
+                  "description": "Gateway Timeout"
                 }
               }
             }

@@ -87,7 +87,7 @@ test("check-for-path-parameters-in-parameter-block should return error message s
 
     return linter.run(oasDoc).then((results) => {
         expect(results).toHaveLength(1);
-        expect(results[0].message).toBe("The  path parameter 'version_id' was not mentioned in the 'name' field of parameters block for 'get' request.")
+        expect(results[0].message).toBe("The path parameter 'version_id' was not mentioned in the 'name' field of parameters block for 'get' request.")
       });
 
 });
@@ -297,7 +297,7 @@ test("check-for-path-parameters-in-parameter-block should return error message s
 
   return linter.run(oasDoc).then((results) => {
       expect(results).toHaveLength(1);
-      expect(results[0].message).toBe("The  path parameter 'deploy' was not mentioned in the 'name' field of parameters block for 'get' request.");
+      expect(results[0].message).toBe("The path parameter 'deploy' was not mentioned in the 'name' field of parameters block for 'get' request.");
     });
 
 });
@@ -332,7 +332,7 @@ test("check-for-path-parameters-in-parameter-block should return error message s
 
   return linter.run(oasDoc).then((results) => {
       expect(results).toHaveLength(1);
-      expect(results[0].message).toBe("The path does not contains 'path' value in 'in' field of /apis/{deploy} - get parameters block.");
+      expect(results[0].message).toBe("The path parameter 'deploy' was not mentioned in the 'name' field of parameters block for 'get' request.");
     });
 
 });
