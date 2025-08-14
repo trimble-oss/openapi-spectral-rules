@@ -115,7 +115,7 @@ rules:
 
  # Spec should contain only valid http verbs (Additional ruleset)
   tdp-does-spec-contains-valid-http-verbs:
-    description: All APIs should have a valid http verb.
+    description: All APIs MUST have a valid http verb.
     severity: warn
     message: "{{error}}"
     given: "$.paths.*"

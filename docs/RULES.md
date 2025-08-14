@@ -182,7 +182,7 @@ All APIs should return a valid http response code (Additional ruleset)
 
 ### tdp-does-spec-contains-valid-http-verbs:
 
-Spec should contain only valid http verbs (Additional ruleset)
+Spec MUST contain only valid http verbs (Additional ruleset)
 
 ### tdp-spec-should-not-be-empty
 
