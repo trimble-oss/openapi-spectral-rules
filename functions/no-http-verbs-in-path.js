@@ -1,5 +1,5 @@
 function hasHttpVerb(url) {
-  const httpVerbs = ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'TRACE', 'TRACK'];
+  const httpVerbs = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'];
 
   // Convert the URL to uppercase for case-insensitive matching
   const uppercaseUrl = url.toUpperCase();
