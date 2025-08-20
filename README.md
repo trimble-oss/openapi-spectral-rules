@@ -18,24 +18,30 @@ npm install -g @stoplight/spectral-cli
 
 ### Usage
 
-#### Production ruleset
+**Updated August 2025**
+
+We have depricated the develop branch and are implementing tags/releases.
+
+#### Current release v1.0
+
+`https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/refs/tags/1.0/spectral.yaml`
 
 You can specify the ruleset directly on the command line:
 
 ```bash
-spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/main/spectral.yaml <api definition file>
+spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/refs/tags/1.0/spectral.yaml <api definition file>
 ```
 
-#### Develop Branch
+#### Latest unreleased
 
-Recently we have implemented a `develop` branch to allow for more broad testing. Any changes and additions will be pushed to the develop branch to allow for testing, validation and for teams to make changes before deploying new rule changes to the `main` branch. Access the `develop` ruleset at the following url:
+Access the latest pre release version: 
 
-`https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/develop/spectral.yaml`
+`https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/refs/heads/main/spectral.yaml`
 
 Example use in the command line:
 
 ```bash
-spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/develop/spectral.yaml <api definition file>
+spectral lint -r https://raw.githubusercontent.com/trimble-oss/openapi-spectral-rules/refs/heads/main/spectral.yaml <api definition file>
 ```
 
 #### Extend the ruleset
