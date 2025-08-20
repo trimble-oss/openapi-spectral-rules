@@ -1,12 +1,136 @@
+---
 extends:
   - [spectral:oas, all]
 functionsDir: "./functions"
-functions:
+functions: 
+  - valid-url-checker
+  - valid-version-checker
+  - no-http-verbs-in-path
+  - check-if-application-or-json-in-put-and-post-response
+  - check-if-response-body-json-in-get-response
+  - valid-http-response
+  - check-for-query-parameter-in-every-path
+  - does-spec-contains-valid-http-verbs
+  - is-valid-spec
   - operation-summary-description
   - operation-post-201-202-status-code
-
+  - check-content-type-for-206-get-response-code
+  - check-standard-for-error-payload
+  - check-description-for-all-error-responses
+  - check-description-for-all-success-responses
+  - check-for-content-type-in-put-and-post-responses
+  - check-for-path-parameter
+  - check-for-response-in-every-request
+  - delete-must-not-return-body
+  - invalid-symbol-in-path
 rules:
   no-$ref-siblings: off
+
+  # Server URLs should follow Trimble API Standards presented in Cloud URL Structure Summary
+  # https://api-standards.trimble-pnp.com/api-standard/http#url-structure
+  tas-api-server-url-invalid:
+    description: API URLs should meet the Trimble API Standards
+    message: "{{error}}"
+    given: "$.servers"
+    severity: warn
+    then:
+      function: valid-url-checker
+
+  # API Version must include the major version and MUST NOT include the minor version
+  # https://api-standards.trimble-pnp.com/api-standard/http#url-versioning
+  tas-api-server-url-version-invalid:
+    description: API URLs versions should meet the Trimble API Standards
+    message: "{{error}}"
+    given: "$.servers"
+    severity: warn
+    then:
+      function: valid-version-checker
+
+  # All schema property names should be camel case.
+  # https://api-standards.trimble-pnp.com/api-standard/http#field-names 
+  tas-openapi-v3-schema-properties-names-camel-case:
+    description: Ensuring that schema property names are camel case.
+    message: All schema property names MUST be camel case.
+    severity: error
+    given: "$..properties."
+    then:
+      field: "@key"
+      function: pattern
+      functionOptions:
+        match:  "^[a-z][a-zA-Z0-9]*$"
+      errorMessage: All field names MUST be formatted as camel case.
+      
+  # Resource path should not contain HTTP verbs
+  # https://api-standards.trimble-pnp.com/api-standard/http#avoiding-actions-in-resource-names
+  tas-no-http-verbs-in-path:
+    description: HTTP verbs should be not be in URL paths
+    message: "{{property}} has HTTP verb in path: {{error}}"
+    recommended: true
+    type: style
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: no-http-verbs-in-path
+
+  # All APIs returning structured data should support JSON as the default format
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts    
+  tas-structured-data-format:
+    description: All APIs returning structured data SHOULD support JSON as the default format.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: check-if-application-or-json-in-put-and-post-response
+
+  # All APIs returning structured data should support JSON as the default format.
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts 
+  tas-structured-data-format-support-json-response-body:
+    description: All APIs returning structured data SHOULD support JSON as the default format.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: check-if-response-body-json-in-get-response
+  
+  # All APIs should return a valid http response code (Additional ruleset)
+  tdp-http-response-code:
+    description: All APIs should return a valid http response code.
+    severity: warn
+    message: "{{error}}"
+    given: "$..responses"
+    then:
+      field: "@key"
+      function: valid-http-response
+
+  # Resource path should not contain query parameter
+  # https://api-standards.trimble-pnp.com/api-standard/http#url-parameters
+  tas-check-queryparameter-in-endpoint:
+    description: Check if the given resource path has queryparameter.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths"
+    then:
+      field: "@key"
+      function: check-for-query-parameter-in-every-path
+
+ # Spec should contain only valid http verbs (Additional ruleset)
+  tdp-does-spec-contains-valid-http-verbs:
+    description: All APIs MUST have a valid http verb.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*"
+    then:
+      field: "@key"
+      function: does-spec-contains-valid-http-verbs
+
+  # Restrict empty spec(Additional ruleset)
+  tdp-spec-should-not-be-empty:
+    description: Spec should not be empty.
+    severity: error
+    message: "{{error}}"
+    given: '$'
+    then:
+      function: is-valid-spec
 
   # Reject Pascal Case within tags
   tdp-tag-pascal-case:
@@ -66,7 +190,6 @@ rules:
   tdp-operation-summary-description:
     description: Operation summaries and description should not match
     message: "{{error}}"
-    documentationUrl: https://github.com/trimble-oss/openapi-spectral-rules/blob/main/openapi-style-guide.md
     severity: warn
     formats: ["oas3"]
     given:
@@ -74,9 +197,10 @@ rules:
     then:
       function: operation-summary-description
 
-  # Trimble Web API Standards
-  tdp-operation-delete-204-status-code:
-    description: All DELETE methods should have a 204 response.
+  # All DELETE methods should have a 204 response
+  # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
+  tas-operation-delete-204-status-code:
+    description: All DELETE methods MUST have a 204 response.
     severity: error
     recommended: true
     formats:
@@ -87,9 +211,10 @@ rules:
       field: "204"
       function: truthy
 
-  # Trimble Web API Standards
+  # All POST methods should have a 201 or 202 response.
+  # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
   tdp-operation-post-201-202-status-code:
-    description: All POST methods should have a 201 or 202 response.
+    description: All POST methods MUST have a 201 or 202 response.
     severity: error
     recommended: true
     formats:
@@ -99,8 +224,9 @@ rules:
     then:
       function: operation-post-201-202-status-code
 
-  # Trimble Web API Standards
-  tdp-operation-400-response-body:
+  # All 400 responses must include a response body
+  # https://api-standards.trimble-pnp.com/api-standard/http#client-error-responses-4xx
+  tas-operation-400-response-body:
     description: All 400 responses must include a response body.
     severity: error
     recommended: true
@@ -112,16 +238,93 @@ rules:
       field: content
       function: truthy
 
-  # Validate for request and response bodies
-  tdp-request-and-response-content:
-    description: Request bodies and non [204, 202] responses should define a content object
+  # Check if the get response code 206 has content-type and content-range
+  # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
+  tas-check-content-type-for-206-get-response-code:
+    description: Check if the get response code 206 has content-type and content-range.
     severity: warn
-    recommended: true
-    formats:
-      - oas3
-    given:
-      - $.paths[*][get,post,put,patch,delete].responses[?(@property != '204' && @property != '202')]
-      - $.paths[*][*].requestBody
+    message: "{{error}}"
+    given: "$.paths.*."
     then:
-      field: content
-      function: truthy
+      function: check-content-type-for-206-get-response-code
+
+  # Standardize the error payload
+  # https://api-standards.trimble-pnp.com/api-standard/http#standard-error-payload
+  tas-standard-error-payload:
+    description: All 4XX and 5XX response codes must follow Trimble API Standard.
+    severity: error
+    given: "$.paths.*.*.responses." 
+    message: "{{error}}"
+    then :
+      function: check-standard-for-error-payload
+
+  # Check for description for all error responses
+  # https://api-standards.trimble-pnp.com/api-standard/http#client-error-responses-4xx
+  tas-check-description-for-all-error-responses:
+    description: Check if the response description is appropriate for all requests.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*.*.responses."
+    then:
+      function: check-description-for-all-error-responses
+
+  # Check for description for all success responses
+  # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
+  tas-check-description-for-all-success-responses:
+    description: Check if the response description is appropriate for all requests.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: check-description-for-all-success-responses
+
+  # Check for content type in put and post response
+  # https://api-standards.trimble-pnp.com/api-standard/http#data-from-apis-bodies-returned-from-gets-posts-puts
+  tas-check-for-content-type-in-put-and-post-responses:
+    description: All API responses MUST include the Content-Type header in all responses
+    severity: error
+    message: "{{error}}"
+    given: 
+      - $.paths[*].post.responses
+      - $.paths[*].put.responses
+    then: 
+       function: check-for-content-type-in-put-and-post-responses 
+
+  # Check for appropriate path in parameters block as provided in the url(Additional case)
+  tdp-check-for-path-parameters-in-parameter-block:
+    description: Check for the path parameter in the parameter block.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths."
+    then:
+      function: check-for-path-parameter 
+
+  # Check if every request has their respective responses
+  # https://api-standards.trimble-pnp.com/api-standard/http#service-responses(Additional cases)
+  tdp-check-for-response-in-every-request:
+    description: Check if every request has their respective responses.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths.*"
+    then:
+      function: check-for-response-in-every-request
+
+  # Delete response must not return body
+  # https://api-standards.trimble-pnp.com/api-standard/http#http-verbs
+  tas-delete-must-not-return-body:
+    description: Check if the delete response does not have any body.
+    severity: warn
+    message: "{{error}}"
+    given: "$.paths.*."
+    then:
+      function: delete-must-not-return-body
+
+  # Check for invalid symbols in the path(Additional Case)
+  tdp-invalid-symbol-in-path:
+    description: Check if the given endpoint has queryparameter.
+    severity: error
+    message: "{{error}}"
+    given: "$.paths."
+    then:
+      field: "@key"
+      function: invalid-symbol-in-path  
