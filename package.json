@@ -11,7 +11,6 @@
   },
   "scripts": {
     "test": "jest",
-    "update-toc": "markdown-toc -i docs/RULES.md",
     "lint-petstore-v3": "spectral lint examples/v3/petstore.yaml --ruleset spectral.yaml",
     "lint-petstore-v3-json": "spectral lint examples/v3/petstore.json --ruleset spectral.yaml",
     "lint-all": "npm run lint-petstore-v3 && npm run lint-petstore-v3-json"
