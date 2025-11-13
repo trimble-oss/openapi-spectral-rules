@@ -379,7 +379,7 @@ test("standard-error-payload should return error message since status property i
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(1);
     expect(results[0].message).toBe(
-      "The 'status' property must be of type 'number'"
+      "The 'status' property must be of type 'integer'"
     );
   });
 });
