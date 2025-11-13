@@ -108,10 +108,10 @@ module.exports = (input) => {
       
       // Validate optional properties if they exist
       if (properties.status) {
-        if (properties.status.type !== "number") {
+        if (properties.status.type !== "integer") {
           return [
             {
-              message: "The 'status' property must be of type 'number'",
+              message: "The 'status' property must be of type 'integer'",
             },
           ];
         }
