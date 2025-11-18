@@ -51,6 +51,13 @@ module.exports = (input) => {
           },
         ];
       }
+
+      // If the schema uses oneOf to reference other error shapes, skip deep validation
+      // and do not require local properties. This preserves existing behavior for
+      // direct object definitions while allowing composed schemas.
+      if (schema && Array.isArray(schema.oneOf) && schema.oneOf.length > 0) {
+        return undefined;
+      }
       
       // Check if properties exist
       if (!schema.properties) {
