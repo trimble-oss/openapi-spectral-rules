@@ -30,6 +30,7 @@
   },
   "homepage": "https://github.com/trimble-oss/openapi-spectral-rules#readme",
   "devDependencies": {
+    "js-yaml": "^4.1.0",
     "@stoplight/spectral-core": "^1.21.0",
     "@stoplight/spectral-formats": "^1.8.2",
     "@stoplight/spectral-functions": "^1.10.1",

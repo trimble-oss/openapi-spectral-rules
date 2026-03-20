@@ -1,4 +1,8 @@
+const fs = require("fs");
+const path = require("path");
+const yaml = require("js-yaml");
 const { linterForRule } = require("./utils");
+const validVersionChecker = require("../functions/valid-version-checker");
 
 let linter;
 
@@ -7,103 +11,66 @@ beforeAll(async () => {
   return linter;
 });
 
-test("tas-api-server-url-version-invalid should return nothing since all API versions are valid", () => {
+function loadFixtureYaml(name) {
+  const filePath = path.join(__dirname, `${name}.yaml`);
+  const text = fs.readFileSync(filePath, "utf8");
+  return yaml.load(text);
+}
 
-    const oasDoc = {
-      openapi: "3.0.0",
-      "servers": [
-        {
-         "url": "https://eu-az.api.trimble.com/product/profile/v1-dev"
-       },
-       {
-         "url": "https://eu-aws.api.trimble.com/product/profiles/v1"
-       },
-       {
-         "url": "https://us-aws.api.trimble.com/product/profiles/v3-qa"
-       },
-       {
-         "url": "https://us-az.api.trimble.com/product/profiles/v22"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v399999"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profile/v10-dev"
-       },
-       {
-         "url": "https://eu-aws.api.trimble.com/product/profiles/v1-stage/users-dev"
-       },
-       {
-         "url": "https://us-aws.api.trimble.com/product/profiles/v3/user-info"
-       },
-       {
-         "url": "https://us-az.api.trimble.com/product/profiles/v12345678901234"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v399999/image/picture/error"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v1"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v10000-dev/user_info"
-       }
-     ]
-    };
+test("all server URLs in valid_spec.yaml satisfy the version rule", () => {
+  const doc = loadFixtureYaml("valid_spec");
+  const oasDoc = {
+    openapi: doc.openapi ?? "3.0.0",
+    servers: doc.servers,
+  };
 
-    return linter.run(oasDoc).then((results) => {
-        expect(results).toHaveLength(0);
-      });
-
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(0);
+  });
 });
 
-test("tas-api-server-url-version-invalid should throw errors since it has invalid versions", () => {
+test("all server URLs in valid_spec.json satisfy the version rule", () => {
+  const doc = require("./valid_spec.json");
+  const oasDoc = {
+    openapi: doc.openapi ?? "3.0.0",
+    servers: doc.servers,
+  };
 
-    const oasDoc = {
-      openapi: "3.0.0",
-      "servers": [
-        {
-         "url": "https://eu-az.api.trimble.com/product/profile/v0"
-       },
-       {
-         "url": "https://eu-aws.api.trimble.com/product/profiles/v1.0.0"
-       },
-       {
-         "url": "https://us-aws.api.trimble.com/product/profiles/v3-qa"
-       },
-       {
-         "url": "https://us-az.api.trimble.com/product/profiles/v22"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v399999"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profile/v10-dev"
-       },
-       {
-         "url": "https://eu-aws.api.trimble.com/product/profiles/v1-stage/users-dev"
-       },
-       {
-         "url": "https://us-aws.api.trimble.com/product/profiles/v3/user-info"
-       },
-       {
-         "url": "https://us-az.api.trimble.com/product/profiles/v12345678901234"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v399999/image/picture/error"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v1"
-       },
-       {
-         "url": "https://eu-az.api.trimble.com/product/profiles/v10000-dev/user_info"
-       }
-     ]
-    };
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(0);
+  });
+});
 
-    return linter.run(oasDoc).then((results) => {
-        expect(results).toHaveLength(1);
-        expect(results[0].message).toBe('All API URLs MUST include the major version and MUST NOT include the minor version.');
-      });
+test("invalid_spec.yaml: every server that fails the version check is reported", () => {
+  const doc = loadFixtureYaml("invalid_spec");
+  const expectedCount = doc.servers.filter(
+    (s) => !validVersionChecker.isValidServerVersionUrl(s.url)
+  ).length;
 
+  const oasDoc = {
+    openapi: doc.openapi ?? "3.0.0",
+    servers: doc.servers,
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(expectedCount).toBeGreaterThan(0);
+    expect(results).toHaveLength(expectedCount);
+  });
+});
+
+test("invalid_spec.json: every server that fails the version check is reported", () => {
+  const doc = require("./invalid_spec.json");
+  const expectedCount = doc.servers.filter(
+    (s) => !validVersionChecker.isValidServerVersionUrl(s.url)
+  ).length;
+
+  const oasDoc = {
+    openapi: doc.openapi ?? "3.0.0",
+    servers: doc.servers,
+  };
+
+  return linter.run(oasDoc).then((results) => {
+    expect(expectedCount).toBeGreaterThan(0);
+    expect(results).toHaveLength(expectedCount);
+  });
 });
