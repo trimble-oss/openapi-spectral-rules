@@ -50,6 +50,15 @@
     },
     {
       "url": "https://eu-az.api.trimble.com/product/profiles/v10000-dev/user_info"
+    },
+    {
+      "url": "https://cloud.api.trimble.com/photogrammetry/v1"
+    },
+    {
+      "url": "https://cloud.stage.api.trimblecloud.com/photogrammetry-engine/dev/v1"
+    },
+    {
+      "url": "https://cloud.stage.api.trimblecloud.com/photogrammetry-service/v1"
     }
   ],
   "tags": [

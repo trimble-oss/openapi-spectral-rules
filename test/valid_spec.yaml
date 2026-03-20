@@ -24,6 +24,9 @@ servers:
 - url: https://eu-az.api.trimble.com/product/profiles/v399999/image/picture/error
 - url: https://eu-az.api.trimble.com/product/profiles/v1
 - url: https://eu-az.api.trimble.com/product/profiles/v10000-dev/user_info
+- url: https://cloud.api.trimble.com/photogrammetry/v1
+- url: https://cloud.stage.api.trimblecloud.com/photogrammetry-engine/dev/v1
+- url: https://cloud.stage.api.trimblecloud.com/photogrammetry-service/v1
 tags:
 - name: API Product Management
   description: 'API calls to create and manage API versions and deployments.
