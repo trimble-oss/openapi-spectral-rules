@@ -3,9 +3,7 @@ extends:
   - [spectral:oas, all]
 functionsDir: "./functions"
 functions: 
-  - valid-url-checker
   - valid-version-checker
-  - no-http-verbs-in-path
   - check-if-application-or-json-in-put-and-post-response
   - check-if-response-body-json-in-get-response
   - valid-http-response
@@ -28,18 +26,8 @@ functions:
 rules:
   no-$ref-siblings: off
 
-  # Server URLs should follow Trimble API Standards presented in Cloud URL Structure Summary
-  # https://developer.trimble.com/docs/api-standard/
-  tas-api-server-url-invalid:
-    description: API URLs should meet the Trimble API Standards
-    message: "{{error}}"
-    given: "$.servers"
-    severity: warn
-    then:
-      function: valid-url-checker
-
   # API Version must include the major version and MUST NOT include the minor version
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/api-versioning
   tas-api-server-url-version-invalid:
     description: API URLs versions should meet the Trimble API Standards
     message: "{{error}}"
@@ -49,7 +37,7 @@ rules:
       function: valid-version-checker
 
   # All schema property names should be camel case.
-  # https://developer.trimble.com/docs/api-standard/ 
+  # https://developer.trimble.com/docs/api-standard/specification/latest/data-interchange-formats#field-names
   tas-openapi-v3-schema-properties-names-camel-case:
     description: Ensuring that schema property names are camel case.
     message: All schema property names MUST be camel case.
@@ -63,7 +51,7 @@ rules:
       errorMessage: All field names MUST be formatted as camel case.
       
   # First path segment MUST be plural noun
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/resource-naming
   tas-resource-naming-plural-first-segment:
     description: The first path segment of a resource URL MUST be a noun and MUST be plural.
     severity: warn
@@ -73,20 +61,8 @@ rules:
       field: "@key"
       function: resource-naming-plural-first-segment
 
-  # Resource path should not contain HTTP verbs
-  # https://developer.trimble.com/docs/api-standard/
-  tas-no-http-verbs-in-path:
-    description: HTTP verbs should be not be in URL paths
-    message: "{{property}} has HTTP verb in path: {{error}}"
-    recommended: true
-    type: style
-    given: "$.paths"
-    then:
-      field: "@key"
-      function: no-http-verbs-in-path
-
   # All APIs returning structured data should support JSON as the default format
-  # https://developer.trimble.com/docs/api-standard/    
+  # https://developer.trimble.com/docs/api-standard/specification/latest/data-interchange-formats
   tas-structured-data-format:
     description: All APIs returning structured data SHOULD support JSON as the default format.
     severity: error
@@ -96,7 +72,7 @@ rules:
       function: check-if-application-or-json-in-put-and-post-response
 
   # All APIs returning structured data should support JSON as the default format.
-  # https://developer.trimble.com/docs/api-standard/ 
+  # https://developer.trimble.com/docs/api-standard/specification/latest/data-interchange-formats#data-from-apis-bodies-returned-from-gets-posts-puts
   tas-structured-data-format-support-json-response-body:
     description: All APIs returning structured data SHOULD support JSON as the default format.
     severity: warn
@@ -105,7 +81,7 @@ rules:
     then:
       function: check-if-response-body-json-in-get-response
   
-  # All APIs should return a valid http response code (Additional ruleset)
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-http-response-code:
     description: All APIs should return a valid http response code.
     severity: warn
@@ -116,7 +92,7 @@ rules:
       function: valid-http-response
 
   # Resource path should not contain query parameter
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/url-parameters
   tas-check-queryparameter-in-endpoint:
     description: Check if the given resource path has queryparameter.
     severity: warn
@@ -126,7 +102,7 @@ rules:
       field: "@key"
       function: check-for-query-parameter-in-every-path
 
- # Spec should contain only valid http verbs (Additional ruleset)
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-does-spec-contains-valid-http-verbs:
     description: All APIs MUST have a valid http verb.
     severity: warn
@@ -136,7 +112,7 @@ rules:
       field: "@key"
       function: does-spec-contains-valid-http-verbs
 
-  # Restrict empty spec(Additional ruleset)
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-spec-should-not-be-empty:
     description: Spec should not be empty.
     severity: error
@@ -145,7 +121,7 @@ rules:
     then:
       function: is-valid-spec
 
-  # Reject Pascal Case within tags
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-tag-pascal-case:
     severity: warn
     recommended: true
@@ -159,7 +135,7 @@ rules:
         #pascal case
         notMatch: "/[A-Z][a-z]+[A-Z][a-z]+$/g"
 
-  # Reject Camel Case within tags
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-tag-camel-case:
     description: Detects a tag with camelCase (personalItem) text within it
     severity: warn
@@ -174,7 +150,7 @@ rules:
         #camel case
         notMatch: "/^[a-z]+[A-Z][a-z]+$/g"
 
-  # Reject version within tags
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-tag-no-versions:
     severity: warn
     recommended: true
@@ -188,7 +164,7 @@ rules:
         #pascal case
         notMatch: "/(V|v)\\s?[0-9]+/g"
 
-  # Check spec version 3 or higher
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-minimum-spec-version:
     description: The spec version should be 3 or greater.
     severity: warn
@@ -199,7 +175,7 @@ rules:
       field: string
       function: truthy
 
-  # Check operation summaries and descriptions should not match
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-operation-summary-description:
     description: Operation summaries and description should not match
     message: "{{error}}"
@@ -211,7 +187,7 @@ rules:
       function: operation-summary-description
 
   # All DELETE methods should have a 204 response
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/r2023-1/service-responses/#successful-responses-2xx
   tas-operation-delete-204-status-code:
     description: All DELETE methods MUST have a 204 response.
     severity: error
@@ -224,8 +200,7 @@ rules:
       field: "204"
       function: truthy
 
-  # All POST methods should have a 201 or 202 response.
-  # https://developer.trimble.com/docs/api-standard/
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-operation-post-201-202-status-code:
     description: All POST methods MUST have a 201 or 202 response.
     severity: error
@@ -238,7 +213,7 @@ rules:
       function: operation-post-201-202-status-code
 
   # All 400 responses must include a response body
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/r2023-1/service-responses/#client-error-responses-4xx
   tas-operation-400-response-body:
     description: All 400 responses must include a response body.
     severity: error
@@ -252,7 +227,7 @@ rules:
       function: truthy
 
   # All 404 responses must include a response body with clear error description
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/r2023-1/service-responses/#client-error-responses-4xx
   tas-operation-404-response-body:
     description: All 404 responses must include a response body with clear, unambiguous error description.
     severity: error
@@ -266,7 +241,7 @@ rules:
       function: truthy
 
   # All 405 responses must include a response body with clear error description
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/r2023-1/service-responses/#client-error-responses-4xx
   tas-operation-405-response-body:
     description: All 405 responses must include a response body with clear, unambiguous error description.
     severity: error
@@ -280,7 +255,7 @@ rules:
       function: truthy
 
   # Check if the get response code 206 has content-type and content-range
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/r2023-1/service-responses/#successful-responses-2xx
   tas-check-content-type-for-206-get-response-code:
     description: Check if the get response code 206 has content-type and content-range.
     severity: warn
@@ -290,7 +265,7 @@ rules:
       function: check-content-type-for-206-get-response-code
 
   # Standardize the error payload
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/standard-error-payload
   tas-standard-error-payload:
     description: All 4XX and 5XX response codes must follow Trimble API Standard.
     severity: error
@@ -300,7 +275,7 @@ rules:
       function: check-standard-for-error-payload
 
   # Check for description for all error responses
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/standard-error-payload
   tas-check-description-for-all-error-responses:
     description: Check if the response description is appropriate for all requests.
     severity: warn
@@ -310,7 +285,7 @@ rules:
       function: check-description-for-all-error-responses
 
   # Check for description for all success responses
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/service-responses#successful-responses-2xx
   tas-check-description-for-all-success-responses:
     description: Check if the response description is appropriate for all requests.
     severity: warn
@@ -320,7 +295,7 @@ rules:
       function: check-description-for-all-success-responses
 
   # Check for content type in put and post response
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/service-responses#successful-responses-2xx
   tas-check-for-content-type-in-put-and-post-responses:
     description: All API responses MUST include the Content-Type header in all responses
     severity: error
@@ -332,7 +307,7 @@ rules:
        function: check-for-content-type-in-put-and-post-responses
 
   # Content-Type required for all responses with body (GET, PATCH)
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/service-responses#successful-responses-2xx
   tas-check-for-content-type-in-all-responses:
     description: All API responses MUST include the Content-Type header in all responses.
     severity: error
@@ -344,7 +319,7 @@ rules:
       function: check-for-content-type-in-put-and-post-responses
 
   # Optional x-trimble-api-standard property - validates format when present (RYYYY.N)
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/api-documentation
   tas-x-trimble-api-standard-format:
     description: When present, x-trimble-api-standard MUST use format RYYYY.N (e.g., R2023.1).
     severity: warn
@@ -353,7 +328,7 @@ rules:
     then:
       function: validate-x-trimble-api-standard-format 
 
-  # Check for appropriate path in parameters block as provided in the url(Additional case)
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-check-for-path-parameters-in-parameter-block:
     description: Check for the path parameter in the parameter block.
     severity: error
@@ -362,8 +337,7 @@ rules:
     then:
       function: check-for-path-parameter 
 
-  # Check if every request has their respective responses
-  # https://developer.trimble.com/docs/api-standard/
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-check-for-response-in-every-request:
     description: Check if every request has their respective responses.
     severity: error
@@ -373,7 +347,7 @@ rules:
       function: check-for-response-in-every-request
 
   # Delete response must not return body
-  # https://developer.trimble.com/docs/api-standard/
+  # https://developer.trimble.com/docs/api-standard/specification/latest/http-verbs
   tas-delete-must-not-return-body:
     description: Check if the delete response does not have any body.
     severity: warn
@@ -382,7 +356,7 @@ rules:
     then:
       function: delete-must-not-return-body
 
-  # Check for invalid symbols in the path(Additional Case)
+  # Trimble Developer Program — no normative API Standard doc link
   tdp-invalid-symbol-in-path:
     description: Check if the given endpoint has queryparameter.
     severity: error
