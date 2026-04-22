@@ -1,0 +1,530 @@
+{
+  "extends": [
+    [
+      "spectral:oas",
+      "all"
+    ]
+  ],
+  "functionsDir": "./functions",
+  "functions": [
+    "valid-url-checker",
+    "valid-version-checker",
+    "no-http-verbs-in-path",
+    "check-if-application-or-json-in-put-and-post-response",
+    "check-if-response-body-json-in-get-response",
+    "valid-http-response",
+    "check-for-query-parameter-in-every-path",
+    "does-spec-contains-valid-http-verbs",
+    "is-valid-spec",
+    "operation-summary-description",
+    "operation-post-201-202-status-code",
+    "check-content-type-for-206-get-response-code",
+    "check-standard-for-error-payload",
+    "check-description-for-all-error-responses",
+    "check-description-for-all-success-responses",
+    "check-for-content-type-in-put-and-post-responses",
+    "check-for-path-parameter",
+    "check-for-response-in-every-request",
+    "delete-must-not-return-body",
+    "invalid-symbol-in-path",
+    "check-x-trimble-api-standard-format",
+    "check-redirect-location-header",
+    "check-redirect-status-preference",
+    "check-standard-metadata-r2026",
+    "check-trn-format",
+    "check-pagination-links-structure"
+  ],
+  "rules": {
+    "no-$ref-siblings": "off",
+    "tas-api-server-url-invalid": {
+      "description": "API URLs should meet the Trimble API Standards",
+      "message": "{{error}}",
+      "given": "$.servers",
+      "severity": "warn",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "then": {
+        "function": "valid-url-checker"
+      }
+    },
+    "tas-api-server-url-version-invalid": {
+      "description": "API URLs versions should meet the Trimble API Standards",
+      "message": "{{error}}",
+      "given": "$.servers",
+      "severity": "warn",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "then": {
+        "function": "valid-version-checker"
+      }
+    },
+    "tas-openapi-v3-schema-properties-names-camel-case": {
+      "description": "Ensuring that schema property names are camel case.",
+      "message": "All schema property names MUST be camel case.",
+      "severity": "error",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$..properties.",
+      "then": {
+        "field": "@key",
+        "function": "pattern",
+        "functionOptions": {
+          "match": "^[a-z][a-zA-Z0-9]*$"
+        },
+        "errorMessage": "All field names MUST be formatted as camel case."
+      }
+    },
+    "tas-no-http-verbs-in-path": {
+      "description": "HTTP verbs should be not be in URL paths",
+      "message": "{{property}} has HTTP verb in path: {{error}}",
+      "recommended": true,
+      "type": "style",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths",
+      "then": {
+        "field": "@key",
+        "function": "no-http-verbs-in-path"
+      }
+    },
+    "tas-structured-data-format": {
+      "description": "All APIs returning structured data SHOULD support JSON as the default format.",
+      "severity": "error",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*.",
+      "then": {
+        "function": "check-if-application-or-json-in-put-and-post-response"
+      }
+    },
+    "tas-structured-data-format-support-json-response-body": {
+      "description": "All APIs returning structured data SHOULD support JSON as the default format.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*.",
+      "then": {
+        "function": "check-if-response-body-json-in-get-response"
+      }
+    },
+    "tdp-http-response-code": {
+      "description": "All APIs should return a valid http response code.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$..responses",
+      "then": {
+        "field": "@key",
+        "function": "valid-http-response"
+      }
+    },
+    "tas-check-queryparameter-in-endpoint": {
+      "description": "Check if the given resource path has queryparameter.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths",
+      "then": {
+        "field": "@key",
+        "function": "check-for-query-parameter-in-every-path"
+      }
+    },
+    "tdp-does-spec-contains-valid-http-verbs": {
+      "description": "All APIs MUST have a valid http verb.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*",
+      "then": {
+        "field": "@key",
+        "function": "does-spec-contains-valid-http-verbs"
+      }
+    },
+    "tdp-spec-should-not-be-empty": {
+      "description": "Spec should not be empty.",
+      "severity": "error",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$",
+      "then": {
+        "function": "is-valid-spec"
+      }
+    },
+    "tdp-tag-pascal-case": {
+      "severity": "warn",
+      "recommended": true,
+      "message": "Tag names cannot use Pascal Case. Please rename {{value}}.",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": [
+        "$.tags[*].name",
+        "$.paths[*][*].tags[*]"
+      ],
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "/[A-Z][a-z]+[A-Z][a-z]+$/g"
+        }
+      }
+    },
+    "tdp-tag-camel-case": {
+      "description": "Detects a tag with camelCase (personalItem) text within it",
+      "severity": "warn",
+      "recommended": true,
+      "message": "Tag names cannot use Camel Case. Please rename {{value}}.",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": [
+        "$.tags[*].name",
+        "$.paths[*][*].tags[*]"
+      ],
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "/^[a-z]+[A-Z][a-z]+$/g"
+        }
+      }
+    },
+    "tdp-tag-no-versions": {
+      "severity": "warn",
+      "recommended": true,
+      "message": "Tag names cannot have version information {{value}}. Consider versioning your API.",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": [
+        "$.tags[*].name",
+        "$.paths[*][*].tags[*]"
+      ],
+      "then": {
+        "function": "pattern",
+        "functionOptions": {
+          "notMatch": "/(V|v)\\s?[0-9]+/g"
+        }
+      }
+    },
+    "tdp-minimum-spec-version": {
+      "description": "The spec version should be 3 or greater.",
+      "severity": "warn",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "formats": [
+        "oas2"
+      ],
+      "given": [
+        "$"
+      ],
+      "then": {
+        "field": "string",
+        "function": "truthy"
+      }
+    },
+    "tdp-operation-summary-description": {
+      "description": "Operation summaries and description should not match",
+      "message": "{{error}}",
+      "severity": "warn",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "formats": [
+        "oas3"
+      ],
+      "given": [
+        "$.paths[*].[get,post,put,patch,delete]"
+      ],
+      "then": {
+        "function": "operation-summary-description"
+      }
+    },
+    "tas-operation-delete-204-status-code": {
+      "description": "All DELETE methods MUST have a 204 response.",
+      "severity": "error",
+      "recommended": true,
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "formats": [
+        "oas3"
+      ],
+      "given": [
+        "$.paths[*].delete.responses"
+      ],
+      "then": {
+        "field": "204",
+        "function": "truthy"
+      }
+    },
+    "tdp-operation-post-201-202-status-code": {
+      "description": "POST create methods MUST have a 201 or 202 response, while search POST endpoints should return 200.",
+      "message": "{{error}}",
+      "severity": "error",
+      "recommended": true,
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "formats": [
+        "oas3"
+      ],
+      "given": [
+        "$.paths[*].post.responses"
+      ],
+      "then": {
+        "function": "operation-post-201-202-status-code"
+      }
+    },
+    "tas-operation-400-response-body": {
+      "description": "All 400 responses must include a response body.",
+      "severity": "error",
+      "recommended": true,
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "formats": [
+        "oas3"
+      ],
+      "given": [
+        "$.paths.*.*.responses['400']"
+      ],
+      "then": {
+        "field": "content",
+        "function": "truthy"
+      }
+    },
+    "tas-check-content-type-for-206-get-response-code": {
+      "description": "Check if the get response code 206 has content-type and content-range.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*.",
+      "then": {
+        "function": "check-content-type-for-206-get-response-code"
+      }
+    },
+    "tas-standard-error-payload": {
+      "description": "All 4XX and 5XX response codes must follow Trimble API Standard.",
+      "severity": "error",
+      "given": "$.paths.*.*.responses.",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "then": {
+        "function": "check-standard-for-error-payload"
+      }
+    },
+    "tas-check-description-for-all-error-responses": {
+      "description": "Check if the response description is appropriate for all requests.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*.*.responses.",
+      "then": {
+        "function": "check-description-for-all-error-responses"
+      }
+    },
+    "tas-check-description-for-all-success-responses": {
+      "description": "Check if the response description is appropriate for all requests.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*.",
+      "then": {
+        "function": "check-description-for-all-success-responses"
+      }
+    },
+    "tas-check-for-content-type-in-put-and-post-responses": {
+      "description": "All API responses MUST include the Content-Type header in all responses",
+      "severity": "error",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": [
+        "$.paths[*].post.responses",
+        "$.paths[*].put.responses"
+      ],
+      "then": {
+        "function": "check-for-content-type-in-put-and-post-responses"
+      }
+    },
+    "tdp-check-for-path-parameters-in-parameter-block": {
+      "description": "Check for the path parameter in the parameter block.",
+      "severity": "error",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.",
+      "then": {
+        "function": "check-for-path-parameter"
+      }
+    },
+    "tdp-check-for-response-in-every-request": {
+      "description": "Check if every request has their respective responses.",
+      "severity": "error",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*",
+      "then": {
+        "function": "check-for-response-in-every-request"
+      }
+    },
+    "tas-delete-must-not-return-body": {
+      "description": "Check if the delete response does not have any body.",
+      "severity": "warn",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.*.",
+      "then": {
+        "function": "delete-must-not-return-body"
+      }
+    },
+    "tdp-invalid-symbol-in-path": {
+      "description": "Check if the given endpoint has queryparameter.",
+      "severity": "error",
+      "message": "{{error}}",
+      "tags": [
+        "R2023.1",
+        "R2026.1"
+      ],
+      "given": "$.paths.",
+      "then": {
+        "field": "@key",
+        "function": "invalid-symbol-in-path"
+      }
+    },
+    "tas-info-x-trimble-api-standard-format": {
+      "description": "If present, x-trimble-api-standard should match Trimble release format RYYYY.N.",
+      "message": "{{error}}",
+      "severity": "warn",
+      "recommended": true,
+      "tags": [
+        "R2026.1"
+      ],
+      "given": "$.info",
+      "then": {
+        "function": "check-x-trimble-api-standard-format"
+      }
+    },
+    "tas-response-redirect-location": {
+      "description": "Redirection responses 307/308 should define a Location header.",
+      "message": "{{error}}",
+      "severity": "warn",
+      "recommended": true,
+      "tags": [
+        "R2026.1"
+      ],
+      "given": "$.paths[*].[get,post,put,patch,delete,head,options,trace,connect]",
+      "then": {
+        "function": "check-redirect-location-header"
+      }
+    },
+    "tas-response-redirect-prefer-307-308": {
+      "description": "Prefer 307/308 redirection responses over 301/302 for method/body preservation.",
+      "message": "{{error}}",
+      "severity": "warn",
+      "recommended": true,
+      "tags": [
+        "R2026.1"
+      ],
+      "given": "$.paths[*].[get,post,put,patch,delete,head,options,trace,connect]",
+      "then": {
+        "function": "check-redirect-status-preference"
+      }
+    },
+    "tas-standard-metadata-fields-r2026": {
+      "description": "Standard metadata should use r2026.1 naming and expected basic field types.",
+      "message": "{{error}}",
+      "severity": "warn",
+      "recommended": true,
+      "tags": [
+        "R2026.1"
+      ],
+      "given": "$.components.schemas.*.properties",
+      "then": {
+        "function": "check-standard-metadata-r2026"
+      }
+    },
+    "tas-trn-format": {
+      "description": "TRN-like fields should use the Trimble Resource Name (TRN) format.",
+      "message": "{{error}}",
+      "severity": "warn",
+      "recommended": true,
+      "tags": [
+        "R2026.1"
+      ],
+      "given": "$.components.schemas.*.properties",
+      "then": {
+        "function": "check-trn-format"
+      }
+    },
+    "tas-pagination-links-structure": {
+      "description": "Paginated operations should expose pagination metadata and links structure.",
+      "message": "{{error}}",
+      "severity": "warn",
+      "recommended": true,
+      "tags": [
+        "R2026.1"
+      ],
+      "given": "$.paths[*].[get,post]",
+      "then": {
+        "function": "check-pagination-links-structure"
+      }
+    }
+  }
+}
