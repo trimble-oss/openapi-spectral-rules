@@ -1,0 +1,9 @@
+extends:
+  - "./spectral-base.yaml"
+rules:
+  tas-info-x-trimble-api-standard-format: off
+  tas-response-redirect-location: off
+  tas-response-redirect-prefer-307-308: off
+  tas-standard-metadata-fields-r2026: off
+  tas-trn-format: off
+  tas-pagination-links-structure: off

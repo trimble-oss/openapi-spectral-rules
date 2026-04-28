@@ -11,8 +11,14 @@
   },
   "scripts": {
     "test": "jest",
-    "lint-petstore-v3": "spectral lint examples/v3/petstore.yaml --ruleset spectral.yaml",
-    "lint-petstore-v3-json": "spectral lint examples/v3/petstore.json --ruleset spectral.yaml",
+    "lint-petstore-v3": "spectral lint examples/v3.0/petstore.yaml --ruleset spectral-r2026.1.yaml",
+    "lint-petstore-v3-json": "spectral lint examples/v3.0/petstore.json --ruleset spectral-r2026.1.yaml",
+    "lint-petstore-v3:r2023.1": "spectral lint examples/v3.0/petstore.yaml --ruleset spectral-r2023.1.yaml",
+    "lint-petstore-v3:r2026.1": "spectral lint examples/v3.0/petstore.yaml --ruleset spectral-r2026.1.yaml",
+    "lint-petstore-v3:auto": "node scripts/lint-by-standard-version.js examples/v3.0/petstore.yaml",
+    "lint-r2023.1": "node scripts/lint-by-standard-version.js --version r2023.1",
+    "lint-r2026.1": "node scripts/lint-by-standard-version.js --version r2026.1",
+    "lint-auto": "node scripts/lint-by-standard-version.js",
     "lint-all": "npm run lint-petstore-v3 && npm run lint-petstore-v3-json"
   },
   "repository": {
