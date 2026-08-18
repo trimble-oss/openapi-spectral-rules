@@ -2,6 +2,8 @@
 
 This repository contains Spectral rules for linting Trimble OpenAPI specification documents. These rules are a companion to the Trimble API Standard.
 
+For contributors and coding agents, start with [AGENTS.md](AGENTS.md) (layout, rule naming, tests, and the semantic/LLM boundary). Human process notes are in [CONTRIBUTING.md](CONTRIBUTING.md).
+
 ## How to use the Spectral ruleset
 
 ### Dependencies

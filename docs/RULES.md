@@ -9,6 +9,8 @@ This repository now supports versioned rulesets for Trimble API Standard release
 - `spectral-base.yaml` (compatibility wrapper)
 - `spectral.yaml` (base/common Trimble deterministic rules)
 
+Rule-by-release coverage is in [VERSION-MATRIX.md](VERSION-MATRIX.md). Agent/contributor conventions are in [AGENTS.md](../AGENTS.md).
+
 ## Common Deterministic Rules (Shared)
 
 These are primarily defined in `spectral.yaml`:
