@@ -1,0 +1,29 @@
+---
+description: Repo map, commands, and hard boundaries for this Spectral ruleset
+alwaysApply: true
+---
+
+# openapi-spectral-rules
+
+This is `@trimble-oss/openapi-spectral-rules`: deterministic Spectral lint rules for Trimble OpenAPI specs. Not a UI app. Ignore Modus / web-component guidance.
+
+Read `AGENTS.md` before changing rules.
+
+## Commands
+
+- Install / test: `npm ci` then `npm test` (Node `>=18`; npm only)
+- Smoke lint: `npm run lint-petstore-v3`
+- Versioned lint: `npm run lint-auto -- <file>` or `--ruleset spectral-r2023.1.yaml` / `spectral-r2026.1.yaml`
+
+## Source of truth
+
+- Canonical rules: `spectral.yaml` (tags `R2023.1` / `R2026.1`)
+- Entrypoints: `spectral-r2026.1.yaml` (all on), `spectral-r2023.1.yaml` (r2026-only rules `off`)
+- Custom functions: CommonJS in `functions/`
+- Tests: Jest + `linterForRule` in `test/utils.js`
+
+Do not treat `spectral-ruleset.json` or `api-spec-ruleset.json` as editable sources.
+
+## Hard boundary
+
+Do not implement semantic/LLM checks here (`tas-semantic-*`). Those belong in the LLM validation pipeline (platform-ai-kit).

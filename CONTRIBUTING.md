@@ -2,6 +2,8 @@
 
 If you would like to contribute to this project please read the [contributing guidelines](https://trimble-oss.github.io/contribute/guidelines/).
 
+Coding agents should follow [AGENTS.md](AGENTS.md). Rule coverage by standard release is in [docs/VERSION-MATRIX.md](docs/VERSION-MATRIX.md).
+
 ## Issues
 
 - You are welcome to [submit an issue](https://github.com/trimble-oss/openapi-spectral-rules/issues) with a bug report or a feature request.
@@ -21,9 +23,12 @@ npm test
 
 When you add a new rule there are a number of places you should consider including:
 
-- `spectral.yaml` should define the new rule, possibly pointing to a new function used by the rule.
+- `spectral.yaml` should define the new rule (with `R2023.1` / `R2026.1` tags), possibly pointing to a new function used by the rule.
+- If the rule is r2026-only, disable it in `spectral-r2023.1.yaml`.
 - `functions` directory to hold any new function for the rule.
-- `test\<rulename>.test.js` should test at least the error and no-error cases of the rule.
+- `test/operation-<descriptor>.test.js` should test at least the error and no-error cases of the rule.
+- `docs/RULES.md` and `docs/VERSION-MATRIX.md` should list the rule and its release coverage.
+- `README.md` should include a short rule bullet.
 - `openapi-style-guide.md` should be updated with the style guideline that the rule enforces.
 
 ### spectral.yaml
