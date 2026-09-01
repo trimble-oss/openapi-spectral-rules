@@ -1,5 +1,4 @@
-
 | Name            | Username          |
 |-----------------|-------------------|
-| Jeff Bendixsen  | [jbend](https://github.com/jbend)     |
+| Jeff Bendixsen  | [jbendtr](https://github.com/jbendtr)     |
 | Carrie Raglan  | [CarrieRaglan](https://github.com/CarrieRaglan)     |
