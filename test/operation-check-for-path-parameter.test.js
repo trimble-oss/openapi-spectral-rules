@@ -110,7 +110,7 @@ test("check-for-path-parameters-in-parameter-block should return error message s
 
     return linter.run(oasDoc).then((results) => {
         expect(results).toHaveLength(1);
-        expect(results[0].message).toBe("The path does not contains parameters block for path parameters.");
+        expect(results[0].message).toBe("The path does not contain parameters block for path parameters.");
       });
 
 });
@@ -173,7 +173,7 @@ test("check-for-path-parameters-in-parameter-block should return error message s
 
     return linter.run(oasDoc).then((results) => {
         expect(results).toHaveLength(1);
-        expect(results[0].message).toBe("The path parameters has duplicate values.");
+        expect(results[0].message).toBe("The path parameters have duplicate values.");
       });
 
 });
