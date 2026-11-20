@@ -27,7 +27,7 @@ module.exports = (input) => {
           return [
             {
               message:
-                "The path does not contains parameters block for path parameters.",
+                "The path does not contain parameters block for path parameters.",
             },
           ];
         } else {
@@ -37,7 +37,7 @@ module.exports = (input) => {
           ) {
             return [
               {
-                message: "The path parameters has duplicate values.",
+                message: "The path parameters have duplicate values.",
               },
             ];
           }
