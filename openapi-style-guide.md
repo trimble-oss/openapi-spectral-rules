@@ -58,7 +58,7 @@ Descriptions should be longer than summaries.
 
 ### tdp-operation-post-201-202-status-code
 
-All POST methods should have a 201 or 202 response. [POST (create) - Successful Responses](https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx)
+All POST methods should have a 200, 201 or 202 response. Use 201 or 202 when the POST creates a resource ([POST (create) - Successful Responses](https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx)). Use 200 for non-creating POSTs (actions, and searches whose path does not end in `/searches`): the standard allows POST actions without giving a status ([Resource Naming](https://developer.trimble.com/docs/api-standard/specification/latest/resource-naming)) and lists 200 for POST (search) ([Service Responses](https://developer.trimble.com/docs/api-standard/specification/latest/service-responses)). Search POST endpoints (`/searches`) must return 200.
 
 ### tdp-operation-delete-204-status-code
 

@@ -265,10 +265,10 @@ rules:
       field: "204"
       function: truthy
 
-  # All POST methods should have a 201 or 202 response.
+  # All POST methods should have a 200, 201 or 202 response (200 for non-creating POSTs: actions, and searches whose path does not end in /searches).
   # https://api-standards.trimble-pnp.com/api-standard/http#successful-responses-2xx
   tdp-operation-post-201-202-status-code:
-    description: POST create methods MUST have a 201 or 202 response, while search POST endpoints should return 200.
+    description: POST methods MUST have a 200, 201 or 202 response (201/202 for create, 200 for non-creating POSTs - actions, and searches whose path does not end in /searches), while search POST endpoints (/searches) MUST return 200.
     message: "{{error}}"
     severity: error
     recommended: true
