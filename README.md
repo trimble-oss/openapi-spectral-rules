@@ -187,7 +187,7 @@ Operation summary and description should not be identical.
 
 #### ✅ tdp-operation-post-201-202-status-code
 
-POST create endpoints should return `201`/`202`; search endpoints (`/searches`) should return `200`.
+POST endpoints should return `200`, `201` or `202`: `201`/`202` for create, `200` for non-creating POSTs (actions, and searches whose path does not end in `/searches`); search endpoints (`/searches`) must return `200`.
 
 #### ✅ tdp-http-response-code
 

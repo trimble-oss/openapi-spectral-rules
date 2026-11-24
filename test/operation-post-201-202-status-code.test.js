@@ -26,7 +26,7 @@ test("tdp-operation-post-201-202-status-code ", () => {
     expect(results.length).toBe(1);
     expect(results[0].path.join(".")).toBe("paths./api/test1.post.responses");
     expect(results[0].message).toBe(
-      "POST create endpoints should return a 201 or 202 response."
+      "POST endpoints should return a 200, 201 or 202 response."
     );
   });
 });
@@ -105,6 +105,76 @@ test("tdp-operation-post-201-202-status-code allows non-search POST with 201", (
   };
   return linter.run(oasDoc).then((results) => {
     expect(results).toHaveLength(0);
+  });
+});
+
+test("tdp-operation-post-201-202-status-code allows non-search POST with 200", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/api/previews": {
+        post: {
+          responses: {
+            200: {
+              description: "OK",
+            },
+            400: {
+              description: "Bad Request",
+            },
+          },
+        },
+      },
+    },
+  };
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(0);
+  });
+});
+
+test("tdp-operation-post-201-202-status-code allows non-search POST with 202", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/api/resources": {
+        post: {
+          responses: {
+            202: {
+              description: "Accepted",
+            },
+          },
+        },
+      },
+    },
+  };
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(0);
+  });
+});
+
+test("tdp-operation-post-201-202-status-code flags non-search POST with none of 200, 201 or 202", () => {
+  const oasDoc = {
+    openapi: "3.0.0",
+    paths: {
+      "/api/resources": {
+        post: {
+          responses: {
+            204: {
+              description: "No Content",
+            },
+            400: {
+              description: "Bad Request",
+            },
+          },
+        },
+      },
+    },
+  };
+  return linter.run(oasDoc).then((results) => {
+    expect(results).toHaveLength(1);
+    expect(results[0].path.join(".")).toBe("paths./api/resources.post.responses");
+    expect(results[0].message).toBe(
+      "POST endpoints should return a 200, 201 or 202 response."
+    );
   });
 });
 

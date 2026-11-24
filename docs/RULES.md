@@ -23,6 +23,7 @@ These are primarily defined in `spectral.yaml`:
 - OpenAPI hygiene (`tdp-spec-should-not-be-empty`, `tdp-does-spec-contains-valid-http-verbs`, etc.)
 - POST behavior (`tdp-operation-post-201-202-status-code`) now supports:
   - create-style POST -> `201` or `202`
+  - any other POST -> `200`, `201` or `202` (`200` is for non-creating POSTs: actions, and searches whose path does not end in `/searches`)
   - search-style POST (`/searches`) -> `200`
 
 ## r2026.1-Specific Deterministic Rules
